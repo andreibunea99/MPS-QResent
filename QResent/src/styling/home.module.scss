@@ -1,0 +1,47 @@
+.container {
+  // display: flex;
+  // flex-direction: unset;
+  .login {
+    // position: relative;
+    //  margin-top: 30%;
+    //   opacity: 80%;
+
+    position: relative;
+    bottom: 300px;
+    padding: 30px;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login:hover {
+    // opacity: 100%;
+  }
+
+  .bannerContainer {
+    width: 100%;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-image: url("../media/graduate.jpg");
+    background-size: cover;
+    background-position: center;
+    transition: all 0.05s;
+    height: calc(100vh - 100px);
+
+    display: flex;
+    //flex-grow: 1;
+    // justify-content: center;
+    // align-items: center;
+    .text {
+      a {
+        display: flex;
+        // flex-direction: row;
+        // text-align: center;
+        font-weight: 400;
+
+        color: white;
+      }
+    }
+  }
+}

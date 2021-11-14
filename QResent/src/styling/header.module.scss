@@ -1,0 +1,33 @@
+.container {
+  > img {
+    position: relative;
+    right: 35%;
+    top: 20%;
+    height: 60px;
+    width: 60px;
+  }
+  width: 100%;
+  //position: fixed;
+  vertical-align: inherit;
+  display: inline-block;
+  text-align: center;
+  height: 100px;
+  //background-color: gray;
+  .link {
+    cursor: pointer;
+    left: 10%;
+    text-decoration: none;
+    padding: 10px;
+    color: black;
+    font-family: acumin-pro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+  }
+  .header {
+    position: relative;
+    left: -35%;
+    font-size: 150%;
+    font-weight: bold;
+  }
+}
