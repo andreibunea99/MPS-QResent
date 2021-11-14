@@ -31,7 +31,7 @@ public class AuthenticationService {
         return getToken(originalString);
     }
 
-    public String getTokenStuden(String originalString) {
+    public String getTokenStudent(String originalString) {
         String hiddenKey = "Team2StudToken";
         originalString = originalString.substring(0, originalString.length() / 2) + hiddenKey +
                 originalString.substring(originalString.length() / 2);
