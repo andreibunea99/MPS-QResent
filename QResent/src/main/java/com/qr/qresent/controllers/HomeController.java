@@ -1,13 +1,9 @@
 package com.qr.qresent.controllers;
-import com.qr.qresent.dao.AdminDAO;
-import com.qr.qresent.dao.AdminDAOImpl;
-import com.qr.qresent.dao.StudentDAO;
-import com.qr.qresent.dao.StudentDAOImpl;
-import com.qr.qresent.entities.AdminEntity;
-import com.qr.qresent.entities.StudentEntity;
-import com.qr.qresent.repository.StudentRepository;
-import com.qr.qresent.repository.StudentService;
-import com.qr.qresent.services.AuthenticationService;
+import com.qr.qresent.dao.Admin;
+import com.qr.qresent.dao.Course;
+import com.qr.qresent.dao.Student;
+import com.qr.qresent.dao.Teacher;
+import com.qr.qresent.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +19,32 @@ public class HomeController {
     @Autowired
     StudentService studentService;
 
+    @Autowired
+    AdminService adminService;
+
+    @Autowired
+    TeacherService teacherService;
+
+    @Autowired
+    CourseService courseService;
+
     @RequestMapping(value = "/test")
     @ResponseBody
     public String test () {
-        StudentEntity admin = new StudentEntity("Sorescu", "Teodora", "314C2", 123, "0",
-                "mate", 1, "12mai");
-        studentService.insert(admin);
+        Student student = new Student("Sroescu", 1, "Teodora", "321", 2, "email", "ldap", "pass");
+        studentService.save(student);
+
+        Admin admin = new Admin(1, "da", "da", 0);
+        adminService.save(admin);
+
+        Teacher teacher = new Teacher(1, "str", "str", "str", "str", 1, "str", "str");
+        teacherService.save(teacher);
+
+        Course course = new Course(1, "name", 1,2, "da");
+        courseService.save(course);
+
+
+
         return "test";
     }
 
