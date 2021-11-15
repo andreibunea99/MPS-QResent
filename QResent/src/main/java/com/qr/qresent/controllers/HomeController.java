@@ -5,10 +5,18 @@ import com.qr.qresent.dao.Student;
 import com.qr.qresent.dao.Teacher;
 import com.qr.qresent.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @Controller
 public class HomeController {
@@ -31,7 +39,7 @@ public class HomeController {
     @RequestMapping(value = "/test")
     @ResponseBody
     public String test () {
-        Student student = new Student("Sroescu", 1, "Teodora", "321", 2, "email", "ldap", "pass");
+        Student student = new Student(1, "Teodorax", "Teodora", "321", "mail@mail", "pass", 2, "ldap.ldap");
         studentService.save(student);
 
         Admin admin = new Admin(1, "da", "da", 0);
@@ -48,21 +56,86 @@ public class HomeController {
         return "test";
     }
 
+    @RequestMapping(value = "/listStud", method = GET)
+    @ResponseBody
+    public ResponseEntity<List<Student>> listStud () {
+
+        return new ResponseEntity<List<Student>>(studentService.findAll(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/listTeacher", method = GET)
+    @ResponseBody
+    public ResponseEntity<List<Teacher>> listTeacher () {
+
+        return new ResponseEntity<List<Teacher>>(teacherService.findAll(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/listAdmin", method = GET)
+    @ResponseBody
+    public ResponseEntity<List<Admin>> listAdmin () {
+
+        return new ResponseEntity<List<Admin>>(adminService.findAll(), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/login", method = POST)
     @ResponseBody
-//    public String login (@RequestParam(value = "email") String user, @RequestParam(value = "password") String passwd) {
-//        return "Login with id=" + user + " and password=" + passwd;
-//    }
-    public String login (@RequestBody String user) {
-        return user;
+    public ResponseEntity<String> login (@RequestBody String user) {
+        JsonObject jsonObject = JsonParser.parseString(user).getAsJsonObject();
+
+        String email = jsonObject.get("email").getAsString();
+        String password = jsonObject.get("password").getAsString();
+
+        if (studentService.getByEmail(email).size() != 0) {
+            if (studentService.getByEmail(email).get(0).getPassword().equals(password)) {
+                return new ResponseEntity<String>("2", HttpStatus.OK);
+            }
+        }
+
+        if (teacherService.getByEmail(email).size() != 0) {
+            if (teacherService.getByEmail(email).get(0).getPassword().equals(password)) {
+                return new ResponseEntity<String>("1", HttpStatus.OK);
+            }
+        }
+
+        if (adminService.getByEmail(email).size() != 0) {
+            if (adminService.getByEmail(email).get(0).getPassword().equals(password)) {
+                return new ResponseEntity<String>("0", HttpStatus.OK);
+            }
+        }
+
+        return new ResponseEntity<String>("", HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(value = "/register", method = POST)
     @ResponseBody
-    public String register (@RequestParam(value = "firstName") String firstName, @RequestParam(value = "lastName") String lastName,
-                            @RequestParam(value = "email") String email, @RequestParam(value = "password") String passwd,
-                            @RequestParam(value = "userType") String type) {
-        return firstName + " " + lastName + " " + email + " " + passwd + " " + type;
+    public ResponseEntity<String> register(@RequestBody String user) {
+        JsonObject jsonObject = JsonParser.parseString(user).getAsJsonObject();
+
+        String firstName = jsonObject.get("firstName").getAsString();
+        String lastName = jsonObject.get("lastName").getAsString();
+        String email = jsonObject.get("email").getAsString();
+        String group = jsonObject.get("group").getAsString();
+        String password = jsonObject.get("password").getAsString();
+        int userType = jsonObject.get("userType").getAsInt();
+        String ldap = jsonObject.get("ldap").getAsString();
+        String course = jsonObject.get("course").getAsString();
+
+        if (userType == 0) {
+            adminService.save(new Admin(email, password, userType));
+            return new ResponseEntity<String>("", HttpStatus.OK);
+        }
+
+        if (userType == 1) {
+            teacherService.save(new Teacher(firstName, lastName, email, password, userType, ldap, course));
+            return new ResponseEntity<String>("", HttpStatus.OK);
+        }
+
+        if (userType == 2) {
+            studentService.save(new Student(firstName, lastName, group, email, password, userType, ldap));
+            return new ResponseEntity<String>("", HttpStatus.OK);
+        }
+
+        return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
     }
 
 }

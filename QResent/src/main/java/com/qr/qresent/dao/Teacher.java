@@ -32,7 +32,18 @@ public class Teacher {
     private String course_name;
 
 
-    public Teacher(Integer ID, String last_name, String first_name, String email, String password, Integer userType, String ldap, String course_name) {
+    public Teacher(Integer ID, String first_name, String last_name, String email, String password, Integer userType, String ldap, String course_name) {
+        this.ID = ID;
+        this.last_name = last_name;
+        this.first_name = first_name;
+        this.email = email;
+        this.password = password;
+        this.userType = userType;
+        this.ldap = ldap;
+        this.course_name = course_name;
+    }
+
+    public Teacher(String first_name, String last_name, String email, String password, Integer userType, String ldap, String course_name) {
         this.ID = ID;
         this.last_name = last_name;
         this.first_name = first_name;

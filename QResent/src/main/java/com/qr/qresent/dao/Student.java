@@ -32,9 +32,19 @@ public class Student {
       private String password;
 
 
-      public Student(String last_name, Integer ID, String first_name, String group, Integer userType, String email, String ldap, String password) {
+      public Student(Integer ID, String first_name, String last_name, String group, String email, String password, Integer userType, String ldap) {
             this.last_name = last_name;
             this.ID = ID;
+            this.first_name = first_name;
+            this.group = group;
+            this.userType = userType;
+            this.email = email;
+            this.ldap = ldap;
+            this.password = password;
+      }
+
+      public Student(String first_name, String last_name, String group, String email, String password, Integer userType, String ldap) {
+            this.last_name = last_name;
             this.first_name = first_name;
             this.group = group;
             this.userType = userType;

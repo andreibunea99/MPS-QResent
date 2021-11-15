@@ -24,4 +24,8 @@ public class TeacherService {
     public Teacher getById(Integer id) {
         return teacherRepository.getById(id);
     }
+
+    public List<Teacher> getByEmail(String email) {
+        return teacherRepository.findByEmail(email);
+    }
 }

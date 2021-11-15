@@ -25,4 +25,8 @@ public class StudentService {
         return studentRepository.getById(id);
     }
 
+    public List<Student> getByEmail(String email) {
+        return studentRepository.findByEmail(email);
+    }
+
 }

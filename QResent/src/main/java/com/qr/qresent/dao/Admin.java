@@ -29,6 +29,12 @@ public class Admin  {
         this.userType = userType;
     }
 
+    public Admin(String email, String password, Integer userType) {
+        this.email = email;
+        this.password = password;
+        this.userType = userType;
+    }
+
     public Admin() {
 
     }

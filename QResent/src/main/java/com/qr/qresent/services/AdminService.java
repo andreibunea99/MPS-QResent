@@ -24,4 +24,8 @@ public class AdminService {
     public Admin getById(Integer id) {
         return adminRepository.getById(id);
     }
+
+    public List<Admin> getByEmail(String email) {
+        return adminRepository.findByEmail(email);
+    }
 }
