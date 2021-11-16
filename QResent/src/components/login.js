@@ -51,14 +51,12 @@ const Login = ({ setValue }) => {
       .post("http://localhost:8080/login", user)
       .then((response) => {
       const jsonData =JSON.stringify(response.data);
-      localStorage.setItem("USER", jsonData);  
-      localStorage.setItem("GROUP", "NOT_SET_UP");
-      localStorage.setItem("LDAP", "NOT_SET_UP");
+      localStorage.setItem("USER", jsonData);
       
       const data = JSON.parse(jsonData);
-      if(data.userType === "2") {
+      if(data.userType == "1") {
         history.push("/pprofile");
-      } else if(data.userType === "3") {
+      } else if(data.userType == "2") {
         history.push("/sprofile");
       } else {
         history.push("/aprofile");

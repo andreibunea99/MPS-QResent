@@ -8,8 +8,7 @@ import { Link } from "react-router-dom";
 class StudentProfile extends React.Component {
       render() {
         let data = localStorage.getItem("USER");
-        let group = localStorage.getItem("GROUP");
-        let ldap = localStorage.getItem("LDAP"); 
+        console.log(data.group)
         const user = JSON.parse(data);
         return (
             <div className={style.container}>
@@ -25,18 +24,13 @@ class StudentProfile extends React.Component {
                         />
                         </div>
                         <h className={style.cardTitle}>
-                        {/* {user.firstName} {user.lastName} */}
-                        Chow chow
+                        {user.firstName} {user.lastName}
                         </h>
                         <p className={style.cardText}>
-                        {/* info */}
-                        {/* {group} */}
-                        Group: NOT_SET_UP
+                        {user.group}
                         </p>
                         <p className={style.cardText}>
-                        {/* info */}
-                        {/* {group} */}
-                        Ldap: NOT_SET_UP
+                        {user.ldap}
                         </p>
                     </div>
                     <Link to="/manageAccount"><ManageAccountsIcon/></Link>

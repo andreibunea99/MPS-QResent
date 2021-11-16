@@ -38,6 +38,8 @@ const ManageAccount = ({ setValue }) => {
   };
 
   const handleChangeToSignup = () => setValue = 1;
+  let data = localStorage.getItem("USER");
+  const user_g = JSON.parse(data);
   const handleSubmit = async (values) => {
     const { group, ldap } = values;
     const user = {
@@ -45,7 +47,7 @@ const ManageAccount = ({ setValue }) => {
       ldap,
     };
     axios
-      .post("http://localhost:8080/manageAccount", user)
+      .post("http://localhost:8080/manageAccount/" + user_g.ID, user)
       .then(() => {
         localStorage.setItem("GROUP", user.group);
         localStorage.setItem("LDAP", user.ldap);

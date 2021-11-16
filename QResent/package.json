@@ -23,6 +23,7 @@
     "react-redirect": "^1.0.0",
     "react-router": "^6.0.1",
     "react-scripts": "4.0.3",
+    "react-use-window-sessionstorage": "^1.0.9",
     "web-vitals": "^1.1.2",
     "yup": "^0.32.11"
   },

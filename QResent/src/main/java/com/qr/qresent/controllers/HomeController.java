@@ -139,10 +139,10 @@ public class HomeController {
         String firstName = jsonObject.get("firstName").getAsString();
         String lastName = jsonObject.get("lastName").getAsString();
         String email = jsonObject.get("email").getAsString();
-        String group = jsonObject.get("group").getAsString();
+//        String group = jsonObject.get("group").getAsString();
         String password = jsonObject.get("password").getAsString();
         int userType = jsonObject.get("userType").getAsInt();
-        String ldap = jsonObject.get("ldap").getAsString();
+//        String ldap = jsonObject.get("ldap").getAsString();
         String course = jsonObject.get("course").getAsString();
 
         if (userType == 0) {
@@ -151,12 +151,12 @@ public class HomeController {
         }
 
         if (userType == 1) {
-            teacherService.save(new Teacher(firstName, lastName, email, password, userType, ldap, course));
+            teacherService.save(new Teacher(firstName, lastName, email, password, userType, "NOT_SETUP", course));
             return new ResponseEntity<String>("", HttpStatus.OK);
         }
 
         if (userType == 2) {
-            studentService.save(new Student(firstName, lastName, group, email, password, userType, ldap));
+            studentService.save(new Student(firstName, lastName, "NOT_SETUP", email, password, userType, "NOT_SETUP"));
             return new ResponseEntity<String>("", HttpStatus.OK);
         }
 

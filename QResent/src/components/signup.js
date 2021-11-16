@@ -221,10 +221,10 @@ const Signup = ({ setValue }) => {
                           Administrator
                         </MenuItem>
                         <MenuItem value={1} key={1}>
-                          Student
+                          Professor
                         </MenuItem>
                         <MenuItem value={2} key={2}>
-                          Professor
+                          Student
                         </MenuItem>
                         {users.map(({ id, firstName, lastName }) => (
                           <MenuItem value={id} key={id}>
