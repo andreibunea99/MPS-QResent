@@ -56,6 +56,7 @@ public class HomeController {
         return "test";
     }
 
+
     @RequestMapping(value = "/listStud", method = GET)
     @ResponseBody
     public ResponseEntity<List<Student>> listStud () {
@@ -86,20 +87,44 @@ public class HomeController {
         String password = jsonObject.get("password").getAsString();
 
         if (studentService.getByEmail(email).size() != 0) {
-            if (studentService.getByEmail(email).get(0).getPassword().equals(password)) {
-                return new ResponseEntity<String>("2", HttpStatus.OK);
+            Student student = studentService.getByEmail(email).get(0);
+            if (student.getPassword().equals(password)) {
+                jsonObject.addProperty("ID", student.getID());
+                jsonObject.addProperty("firstName", student.getFirstName());
+                jsonObject.addProperty("lastName", student.getLastName());
+                jsonObject.addProperty("ldap", student.getLdap());
+                jsonObject.addProperty("group", student.getGroup());
+                jsonObject.addProperty("courseName", "");
+                jsonObject.addProperty("userType", student.getUserType());
+                return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
             }
         }
 
         if (teacherService.getByEmail(email).size() != 0) {
-            if (teacherService.getByEmail(email).get(0).getPassword().equals(password)) {
-                return new ResponseEntity<String>("1", HttpStatus.OK);
+            Teacher teacher = teacherService.getByEmail(email).get(0);
+            if (teacher.getPassword().equals(password)) {
+                jsonObject.addProperty("ID", teacher.getID());
+                jsonObject.addProperty("firstName", teacher.getFirstName());
+                jsonObject.addProperty("lastName", teacher.getLastName());
+                jsonObject.addProperty("ldap", teacher.getLdap());
+                jsonObject.addProperty("group", "");
+                jsonObject.addProperty("courseName", teacher.getCourseName());
+                jsonObject.addProperty("userType", teacher.getUserType());
+                return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
             }
         }
 
         if (adminService.getByEmail(email).size() != 0) {
-            if (adminService.getByEmail(email).get(0).getPassword().equals(password)) {
-                return new ResponseEntity<String>("0", HttpStatus.OK);
+            Admin admin = adminService.getByEmail(email).get(0);
+            if (admin.getPassword().equals(password)) {
+                jsonObject.addProperty("ID", admin.getID());
+                jsonObject.addProperty("firstName", "");
+                jsonObject.addProperty("lastName", "");
+                jsonObject.addProperty("ldap", "");
+                jsonObject.addProperty("group", "");
+                jsonObject.addProperty("courseName", "");
+                jsonObject.addProperty("userType", admin.getUserType());
+                return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
             }
         }
 
@@ -132,6 +157,21 @@ public class HomeController {
 
         if (userType == 2) {
             studentService.save(new Student(firstName, lastName, group, email, password, userType, ldap));
+            return new ResponseEntity<String>("", HttpStatus.OK);
+        }
+
+        return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "/manageAccount/{id}", method = POST)
+    @ResponseBody
+    public ResponseEntity<String> manageAccount(@PathVariable String id, @RequestBody String user) {
+        JsonObject jsonObject = JsonParser.parseString(user).getAsJsonObject();
+
+        Boolean r = studentService.changeDetails(id, jsonObject.get("group").getAsString(),
+                jsonObject.get("ldap").getAsString());
+
+        if (r) {
             return new ResponseEntity<String>("", HttpStatus.OK);
         }
 
