@@ -28,9 +28,7 @@ const Login = ({ setValue }) => {
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
-      .required("Password is required")
-      .min(6, "Password must be at least 6 characters")
-      .max(40, "Password must not exceed 40 characters"),
+      .required("Password is required"),
   });
 
  const history = useHistory();
@@ -40,6 +38,15 @@ const Login = ({ setValue }) => {
     remember: false,
   };
 
+  const initialCourse = {
+    description : "",
+    minReqHomework : "",
+    minReqProject : "",
+    minReqExam : "",
+    bonus : "",
+    timetable : [],
+  }
+
   const handleChangeToSignup = () => setValue = 1;
   const handleSubmit = async (values) => {
     const { email, password } = values;
@@ -47,17 +54,34 @@ const Login = ({ setValue }) => {
       email,
       password,
     };
+  
     axios
       .post("http://localhost:8080/login", user)
       .then((response) => {
       const jsonData =JSON.stringify(response.data);
       localStorage.setItem("USER", jsonData);
-      history.push('/profile');
+      const user = JSON.parse(jsonData);
+
+      //console.log("teo" + localStorage.getItem("TEO"));
+      
+      if(localStorage.getItem("INFO_COURSE") === null) {
+      const jsonDataC =JSON.stringify(initialCourse);
+      localStorage.setItem("INFO_COURSE", jsonDataC);
+      }
+
+      if(user.userType == "1") {
+        history.push('/teacher/profile');
+      } else if(user.userType == "2") {
+        history.push('/student/profile');
+      } else {
+        history.push('/admin/profile');
+      }
 
     })
       .catch((error) => {
         alert(error);
       });
+     
   };
 
   return (

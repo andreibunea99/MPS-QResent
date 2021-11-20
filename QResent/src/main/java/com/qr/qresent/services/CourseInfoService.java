@@ -4,9 +4,10 @@ import com.qr.qresent.dao.Course;
 import com.qr.qresent.dao.CourseInfo;
 import com.qr.qresent.repository.CourseInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CourseInfoService {
     @Autowired
     private CourseInfoRepository courseInfoRepository;

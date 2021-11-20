@@ -34,6 +34,9 @@ public class HomeController {
     @Autowired
     CourseService courseService;
 
+    @Autowired
+    CourseInfoService courseInfoService;
+
     @RequestMapping(value = "/test")
     @ResponseBody
     public String test () {
@@ -181,10 +184,13 @@ public class HomeController {
     @ResponseBody
     public ResponseEntity<String> configCourse(@PathVariable String id, @RequestBody String json) {
         JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+        System.out.println(jsonObject);
 
         String token = jsonObject.get("token").getAsString();
 
+
         if (authService.isAdmin(Integer.valueOf(id), token) || authService.isProfessor(Integer.valueOf(id), token)) {
+            System.out.println("ok");
             CourseInfo info = new CourseInfo(jsonObject.get("courseName").getAsString(),
                     jsonObject.get("description").getAsString(),
                     jsonObject.get("minReqHomework").getAsString(),
@@ -192,6 +198,8 @@ public class HomeController {
                     jsonObject.get("minReqExam").getAsString(),
                     jsonObject.get("bonus").getAsString(),
                     jsonObject.get("timetable").getAsString());
+
+            courseInfoService.save(info);
             JsonObject obj = new JsonObject();
             JsonArray array = new JsonArray();
             String[] parts = info.getTimetable().split(";");

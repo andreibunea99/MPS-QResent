@@ -15,7 +15,10 @@ class Header extends React.Component {
             {/* <Link className={style.link} to="/login"><h><LockIcon/></h></Link>
             <Link to="/qrsubmit"><h>SUBMIT</h></Link>
             <Link to="/sprofile"><h>studentProfile</h></Link> */}
-            {/* <Link to="/done"><h>DONE</h></Link> */}
+            {/* <Link to="/done"><h>DONE</h></Link>
+
+            <Link to="/qrsubmit"><h>s</h></Link> */}
+
         </div>;
     }
 }

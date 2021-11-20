@@ -15,6 +15,12 @@ import * as Yup from "yup";
 
 
 class QrSubmit extends React.Component {
+  routingFunction = (param) => {
+    this.props.history.push({
+        pathname: param,
+        
+    });
+}
     render() { 
         const paperStyle = {
             padding: 60,
@@ -45,7 +51,7 @@ class QrSubmit extends React.Component {
             course: "",
             date: ""
           };
-
+          
           const handleSubmit = async (values) => {
             const { email, token, course, date} =
               values;
@@ -58,7 +64,7 @@ class QrSubmit extends React.Component {
             axios
               .post("http://localhost:8080/qrSubmit", user)
               .then(() => {
-               // history.push("/success")
+                this.routingFunction('/done');
               })
               .catch((error) => {
                 alert(error);

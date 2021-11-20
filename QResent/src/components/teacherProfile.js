@@ -19,9 +19,26 @@ import {Button} from "@mui/material";
 class ProfessorProfile extends React.Component {
     render() { 
         let data = localStorage.getItem("USER");
-        let data2 = localStorage.getItem("COURSE");
         const user = JSON.parse(data);
-        const course = JSON.parse(data2);
+        //console.log(data);
+        let course2 = localStorage.getItem("INFO_COURSE");
+       // console.log(course);
+        const course = JSON.parse(course2);
+               console.log(course);
+
+        const time = course.timetable;
+
+    //     axios
+    //     .get("http://localhost:8080/courseInfo" + user.ID,)
+    //     .then((response) => {
+    //     const jsonData =JSON.stringify(response.data);
+    //     localStorage.setItem("USER", jsonData);
+    //     const user = JSON.parse(jsonData);
+    //   })
+    //     .catch((error) => {
+    //       alert(error);
+    //     });
+        
         return (
             <div className={style.container}>
                     <div className={style.card}>
@@ -46,17 +63,18 @@ class ProfessorProfile extends React.Component {
                     <a>2021</a>
                     <p>Course</p>
                     <a>{user.courseName}</a>
-                    <a style={{fontSize: '12px', color: 'red'}}>     NOT CONFIGURED</a>
-                    <ul> <img  style={{width:'20px'}} src={Description}/> Analiza si algebra</ul>
-                     <ul>   <img  style={{width:'20px'}} src={MinReq}/> Requirements<ul>Tema - minim 50%</ul>
-                     <ul>Proiect - minim 50%</ul>
-                     <ul>Examen - minim 50%</ul></ul>
-                     <ul> <img  style={{width:'20px'}} src={Bonus}/> Prezentarea unui articol stiintific</ul>
-                     <ul>   <img  style={{width:'20px'}} src={Time}/> Schedule<ul>Monday - 12:00</ul>
-                     <ul>Thursday: 14:00</ul></ul>
+                    {course.description == "" && <a style={{fontSize: '12px', color: 'red'}}>     NOT CONFIGURED</a>}
+                    {course.description != null && <ul> <img  style={{width:'20px'}} src={Description}/>{course.description}</ul>}
+                     <ul>   <img  style={{width:'20px'}} src={MinReq}/> Requirements<ul>{course.minReqHomework}</ul>
+                     <ul>{course.minReqProject}</ul>
+                     <ul>{course.minReqExam}</ul></ul>
+                     <ul> <img  style={{width:'20px'}} src={Bonus}/> {course.bonus}</ul>
+                     <ul>   <img  style={{width:'20px'}} src={Time}/> Schedule  <ul>{time.map((t) => (
+                       <div> {t} </div>
+                    ))} </ul> </ul>
+                     
                     
-              
-                     <img  style={{width:'20px'}} src={Qr}/>
+                     <img  style={{width:'20px'}} src={Qr}/> 
                      <Link style={{textDecoration:'none'}}to='/qrcode'><Button style={{color:'black'}} >Generate QR</Button></Link>
                   
                     </div>  

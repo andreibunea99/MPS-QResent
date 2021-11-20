@@ -4,6 +4,9 @@ import style from '../styling/studentProfile.module.scss';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { Link } from "react-router-dom"
 import UserDetails from './userDetails';
+import Box from '@mui/material/CardActions';
+import Token from '../media/token.png';
+
 
 
 class StudentProfile extends React.Component {
@@ -45,6 +48,10 @@ class StudentProfile extends React.Component {
                     <p>Ldap</p>
                     {user.ldap == "NOT_SETUP" && <a style={{fontSize: '12px', color: 'red'}}>     NOT CONFIGURED</a>}
                     {user.ldap != "NOT_SETUP" &&<a>{user.ldap}</a>}
+                    <p>Personal access token</p>
+                    <a> <img style={{width:'20px'}} src={Token}/> {user.token} </a>
+                    <br/>
+                    <a style={{fontSize: '13px', color: 'black'}}>Personal access tokens function like ordinary OAuth access tokens. They can be used instead of a password after scaning the QR code</a>
                 </div>               
             </div>
         );

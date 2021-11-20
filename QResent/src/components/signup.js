@@ -10,18 +10,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import Checkbox from "@mui/material/Checkbox";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import {useHistory } from "react-router-dom";
+
 
 const Signup = ({ setValue }) => {
   const paperStyle = {
@@ -43,8 +37,9 @@ const Signup = ({ setValue }) => {
       .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
     email: Yup.string().required("Email is required").email("Email is invalid"),
     userType: Yup.string().required("Please select an option"),
+    course: Yup.string().required("Please choose a course"),
   });
-
+  const history = useHistory();
   const [users, setUsers] = useState([]);
   const initialValues = {
     firstName: "",
@@ -69,7 +64,7 @@ const Signup = ({ setValue }) => {
     axios
       .post("http://localhost:8080/register", user)
       .then(() => {
-        alert("The user was added!");
+        alert('User was added!');
       })
       .catch((error) => {
         alert(error);

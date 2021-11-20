@@ -1,77 +1,75 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import {
-  Avatar,
-  Box,
-  Button,
   Grid,
-  MenuItem,
   Paper,
+  Avatar,
   TextField,
+  Button,
   Typography,
 } from "@mui/material";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { Link, useHistory } from "react-router-dom";
-
-
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-
+import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 const ConfigCourse = ({ setValue }) => {
   const paperStyle = {
     padding: 60,
     height: "75%",
     width: 500,
-    margin: "0 auto",
+    margin: "0 auto", 
   };
-  const headerStyle = { margin: 0 };
-  const avatarStyle = { backgroundColor: "purple" };
-  const marginTop = { marginTop: 5 };
-  const history = useHistory();
+  const avatarStyle = { backgroundColor: "#003049" };
+  const btnStyle = { margin: "8px 0", backgroundColor: "#003049", opacity: "100%"};
+
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string()
-      .required("First name is required")
-      .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-    lastName: Yup.string()
-      .required("Last name is required")
-      .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
-    email: Yup.string().required("Email is required").email("Email is invalid"),
-    userType: Yup.string().required("Please select an option"),
+    
   });
 
-  const [info, setInfo] = useState([]);
+  let data = localStorage.getItem("USER");
+  const user = JSON.parse(data);
+
+ const history = useHistory();
   const initialValues = {
     description: "",
-    minreq: "",
+    minReqHomework: "",
+    minReqProject: "",
+    minReqExam: "",
     bonus: "",
-    timetable: ""
+    timetable: "",
   };
-  let data = localStorage.getItem("USER");
-  const user= JSON.parse(data);
   const handleSubmit = async (values) => {
-    const { description, minreq, bonus, timetable} = values;
-    //values.password = Math.random().toString(36).slice(-8);
+    const {  description,
+      minReqHomework,
+      minReqProject,
+      minReqExam,
+      bonus,
+      timetable, token, courseName } = values;
     const info = {
-        description,
-        minreq,
+      description,
+        minReqHomework,
+        minReqProject,
+        minReqExam,
         bonus,
         timetable,
+        token,
+        courseName
     };
+    info.token = user.token;
+    info.courseName = user.courseName;
+
     axios
-      .post("http://localhost:8080/configCourse/" + user.courseID, info)
+      .post("http://localhost:8080/configCourse/" + user.ID, info)
       .then((response) => {
-        localStorage.setItem("INFO_COURSE", response.data);
-        history.push('./pprofile');
-      })
+        const jsonData =JSON.stringify(response.data);
+        localStorage.setItem("INFO_COURSE", jsonData);
+        history.push('/teacher/profile');
+       })
       .catch((error) => {
-        alert(error);
-      });
+        alert("Bad credentials");
+    });
   };
 
   return (
@@ -79,11 +77,10 @@ const ConfigCourse = ({ setValue }) => {
       <Paper style={paperStyle}>
         <Grid align="center">
           <Avatar style={avatarStyle}>
-            <AddCircleOutlineOutlinedIcon />
+            <LockOutlinedIcon />
           </Avatar>
-          <h2 style={headerStyle}>Configure course</h2>
+          <h2>Manage Account</h2>
         </Grid>
-
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -96,51 +93,85 @@ const ConfigCourse = ({ setValue }) => {
                   <TextField
                     name="description"
                     label="Description"
-                    placeholder="Enter Description"
+                    placeholder="Enter description"
+                    variant="outlined"
                     fullWidth
                     onChange={handleChange("description")}
-                    multiline
                   />
                 </Grid>
 
                 <Grid item>
                   <TextField
-                    name="minreq"
-                    label="Minimum Requirements"
-                    placeholder="Enter minimum requirements"
+                    name="minReqHomework"
+                    label="minReqHomework"
+                    placeholder="Enter minReqHomework"
+                    type="minReqHomework"
+                    variant="outlined"
                     fullWidth
-                    onChange={handleChange("minreq")}
-                    multiline
+                    onChange={handleChange("minReqHomework")}
+                   
+                  />
+                </Grid>
+
+                <Grid item>
+                  <TextField
+                    name="minReqProject"
+                    label="minReqProject"
+                    placeholder="Enter minReqProject"
+                    type="minReqProject"
+                    variant="outlined"
+                    fullWidth
+                    onChange={handleChange("minReqProject")}
+                   
+                  />
+                </Grid>
+
+                <Grid item>
+                  <TextField
+                    name="minReqExam"
+                    label="minReqExam"
+                    placeholder="Enter minReqExam"
+                    type="minReqExam"
+                    variant="outlined"
+                    fullWidth
+                    onChange={handleChange("minReqExam")}
+                   
                   />
                 </Grid>
 
                 <Grid item>
                   <TextField
                     name="bonus"
-                    label="Bonus"
+                    label="bonus"
                     placeholder="Enter bonus"
+                    type="bonus"
+                    variant="outlined"
                     fullWidth
                     onChange={handleChange("bonus")}
-                    multiline
+                   
                   />
-                  </Grid>
-            
-                  <Grid item>
+                </Grid>
+
+                <Grid item>
                   <TextField
                     name="timetable"
-                    label="Timetable"
-                    placeholder="Enter schedule"
+                    label="timetable"
+                    placeholder="Enter timetable"
+                    type="timetable"
+                    variant="outlined"
                     fullWidth
                     onChange={handleChange("timetable")}
-                    multiline
+                   
                   />
-                  </Grid>
+                </Grid>
+
                 <Grid item>
                   <Button
                     type="submit"
-                    variant="contained"
                     color="primary"
-                    style={marginTop}
+                    variant="contained"
+                    style={btnStyle}
+                    fullWidth
                   >
                     Submit
                   </Button>
@@ -155,3 +186,4 @@ const ConfigCourse = ({ setValue }) => {
 };
 
 export default ConfigCourse;
+ 

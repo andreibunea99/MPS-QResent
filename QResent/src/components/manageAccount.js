@@ -50,7 +50,7 @@ const ManageAccount = ({ setValue }) => {
       .then((response) => {
         const jsonData =JSON.stringify(response.data);
         localStorage.setItem("USER", jsonData);
-        history.push('/profile');
+        history.push('/student/profile');
        })
       .catch((error) => {
         alert("Bad credentials");
