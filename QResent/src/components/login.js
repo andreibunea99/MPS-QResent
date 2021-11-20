@@ -51,21 +51,12 @@ const Login = ({ setValue }) => {
       .post("http://localhost:8080/login", user)
       .then((response) => {
       const jsonData =JSON.stringify(response.data);
-      localStorage.setItem("USER", jsonData);  
-      localStorage.setItem("GROUP", "NOT_SET_UP");
-      localStorage.setItem("LDAP", "NOT_SET_UP");
-      
-      const data = JSON.parse(jsonData);
-      if(data.userType === "2") {
-        history.push("/pprofile");
-      } else if(data.userType === "3") {
-        history.push("/sprofile");
-      } else {
-        history.push("/aprofile");
-      }
+      localStorage.setItem("USER", jsonData);
+      history.push('/profile');
+
     })
       .catch((error) => {
-        alert("Bad credentials");
+        alert(error);
       });
   };
 

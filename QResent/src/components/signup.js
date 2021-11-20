@@ -10,6 +10,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
+
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 import Radio from "@mui/material/Radio";
@@ -40,45 +42,34 @@ const Signup = ({ setValue }) => {
       .required("Last name is required")
       .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field "),
     email: Yup.string().required("Email is required").email("Email is invalid"),
-    password: Yup.string()
-      .required("Password is required")
-      .min(6, "Password must be at least 6 characters")
-      .max(40, "Password must not exceed 40 characters"),
-    confirmPassword: Yup.string()
-      .required("Confirm Password is required")
-      .oneOf([Yup.ref("password"), null], "Confirm Password does not match"),
     userType: Yup.string().required("Please select an option"),
-    acceptTerms: Yup.bool().oneOf([true], "Accept Terms is required"),
   });
 
   const [users, setUsers] = useState([]);
   const initialValues = {
     firstName: "",
     lastName: "",
+    password:"",
     email: "",
-    password: "",
-    confirmPassword: "",
-    acceptTerms: false,
+    userType: "",
+    course: ""
   };
 
   const handleSubmit = async (values) => {
-    const { firstName, lastName, email, password, userType, verifyUserType } =
-      values;
+    const { firstName, lastName, email, password, userType, course} = values;
+    //values.password = Math.random().toString(36).slice(-8);
     const user = {
       firstName,
       lastName,
       email,
       password,
       userType,
-      // role: {
-      //   id: verifyUserType,
-      // },
+      course
     };
     axios
       .post("http://localhost:8080/register", user)
       .then(() => {
-        alert("Register completed!");
-        setValue(0);
+        alert("The user was added!");
       })
       .catch((error) => {
         alert(error);
@@ -108,8 +99,7 @@ const Signup = ({ setValue }) => {
           <Avatar style={avatarStyle}>
             <AddCircleOutlineOutlinedIcon />
           </Avatar>
-          <h2 style={headerStyle}>Register</h2>
-          <Typography variant="caption">Create an account here!</Typography>
+          <h2 style={headerStyle}>Add user</h2>
         </Grid>
 
         <Formik
@@ -164,42 +154,19 @@ const Signup = ({ setValue }) => {
                       errors.email && touched.email ? errors.email : null
                     }
                   />
-                </Grid>
-
-                <Grid item>
+                </Grid> <Grid item>
                   <TextField
-                    name="password"
+                    name="password "
                     label="Password"
                     placeholder="Enter password"
-                    type="password"
                     fullWidth
                     onChange={handleChange("password")}
-                    error={errors.password && touched.password}
+                    error={errors.email && touched.email}
                     helperText={
-                      errors.password && touched.password
-                        ? errors.password
-                        : null
+                      errors.email && touched.email ? errors.email : null
                     }
                   />
                 </Grid>
-
-                <Grid item>
-                  <TextField
-                    name="confirmPassword"
-                    label="Confirm Password"
-                    placeholder="Confirm password"
-                    type="password"
-                    fullWidth
-                    onChange={handleChange("confirmPassword")}
-                    error={errors.confirmPassword && touched.confirmPassword}
-                    helperText={
-                      errors.confirmPassword && touched.confirmPassword
-                        ? errors.confirmPassword
-                        : null
-                    }
-                  />
-                </Grid>
-
                 <Grid item>
                   <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
@@ -207,7 +174,7 @@ const Signup = ({ setValue }) => {
                         value={values.userType}
                         id="demo-simple-select"
                         name="userType"
-                        label="Select your function"
+                        label="Select user type"
                         onChange={handleChange("userType")}
                         error={errors.userType && touched.userType}
                         helperText={
@@ -221,10 +188,10 @@ const Signup = ({ setValue }) => {
                           Administrator
                         </MenuItem>
                         <MenuItem value={1} key={1}>
-                          Student
+                          Professor
                         </MenuItem>
                         <MenuItem value={2} key={2}>
-                          Professor
+                          Student
                         </MenuItem>
                         {users.map(({ id, firstName, lastName }) => (
                           <MenuItem value={id} key={id}>
@@ -235,65 +202,22 @@ const Signup = ({ setValue }) => {
                     </FormControl>
                   </Box>
                 </Grid> 
-
-                {/* <Grid item>
-                  <FormControl component="fieldset" style={marginTop}>
-                    <FormLabel component="legend">
-                      Are you a manager? *
-                    </FormLabel>
-                    <RadioGroup
-                      aria-label="Are you a manager? *"
-                      name="isManager"
-                      style={{ display: "initial" }}
-                      onChange={handleChange("isManager")}
-                    >
-                      <FormControlLabel
-                        value="1"
-                        control={<Radio />}
-                        label="Yes"
-                      />
-                      <FormControlLabel
-                        value="2"
-                        control={<Radio />}
-                        label="No"
-                      />
-                    </RadioGroup>
-                    <ErrorMessage name="isManager">
-                      {(msg) => <div style={{ color: "red" }}>{msg}</div>}
-                    </ErrorMessage>
-                  </FormControl>
-                </Grid>
-
-                {/* <Grid item>
-                  {values.isManager === "1" && (
-                    <TextField
-                      name="managerCode"
-                      label="Insert the code"
-                      id="ifYes"
-                      placeholder="Enter the code"
-                      onChange={handleChange("managerCode")}
-                      error={errors.managerCode && touched.managerCode}
-                      helperText={
-                        errors.managerCode && touched.managerCode
-                          ? errors.managerCode
-                          : null
-                      }
-                    />
-                  )}
-                </Grid> */}
                 <Grid item>
-                  <FormControlLabel
-                    name="acceptTerms"
-                    control={<Checkbox name="checkedA" />}
-                    label="I accept the terms and conditions *"
-                    onChange={handleChange("acceptTerms")}
+                {values.userType == "1" && (
+                  <TextField
+                    name="course"
+                    label="Course"
+                    placeholder="Enter course"
+                    fullWidth
+                    onChange={handleChange("course")}
+                    error={errors.course && touched.course}
+                    helperText={
+                      errors.course && touched.course ? errors.course : null
+                    }
                   />
-                  <ErrorMessage name="acceptTerms">
-                    {(msg) => <div style={{ color: "red" }}>{msg}</div>}
-                  </ErrorMessage>
-                </Grid>
-
+                                )}                </Grid>
                 <Grid item>
+                  {/* <Link to="/done"> */}
                   <Button
                     type="submit"
                     variant="contained"
@@ -302,6 +226,7 @@ const Signup = ({ setValue }) => {
                   >
                     Sign Up
                   </Button>
+                  {/* </Link> */}
                 </Grid>
               </Grid>
             </Form>

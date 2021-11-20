@@ -14,12 +14,12 @@ import javax.persistence.*;
 @Data
 public class Student {
       @Column(name = "student_last_name")
-      private String last_name;
+      private String lastName;
       @Id
       @GeneratedValue(strategy = GenerationType.IDENTITY)
       private Integer ID;
       @Column(name = "student_first_name")
-      private String first_name;
+      private String firstName;
       @Column(name = "college_class")
       private String group;
       @Column(name = "UserType")
@@ -32,10 +32,20 @@ public class Student {
       private String password;
 
 
-      public Student(String last_name, Integer ID, String first_name, String group, Integer userType, String email, String ldap, String password) {
-            this.last_name = last_name;
+      public Student(Integer ID, String firstName, String lastName, String group, String email, String password, Integer userType, String ldap) {
+            this.lastName = lastName;
             this.ID = ID;
-            this.first_name = first_name;
+            this.firstName = firstName;
+            this.group = group;
+            this.userType = userType;
+            this.email = email;
+            this.ldap = ldap;
+            this.password = password;
+      }
+
+      public Student(String firstName, String lastName, String group, String email, String password, Integer userType, String ldap) {
+            this.lastName = lastName;
+            this.firstName = firstName;
             this.group = group;
             this.userType = userType;
             this.email = email;

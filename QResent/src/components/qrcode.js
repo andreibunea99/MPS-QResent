@@ -1,6 +1,8 @@
 import QRCode from "qrcode";
 import React from 'react';
 import { useState, useEffect } from 'react';
+import style from '../styling/qrcode.module.scss';
+
 
 const QRRepresent = () => {
     const [src, setSrc] = useState("");
@@ -9,7 +11,13 @@ const QRRepresent = () => {
      
      }, []);
      return (
-        <img src={src} />
+      <div className={style.container}>
+      <div className={style.card}>
+      <img src={src} />
+      <h>Scan the QR code to let me know you are present at my course.</h>
+      </div>
+        </div>
+
      );
 }
 

@@ -17,9 +17,9 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
     @Column(name = "teacher_last_name")
-    private String last_name;
+    private String lastName;
     @Column(name = "teacher_first_name")
-    private String first_name;
+    private String firstName;
     @Column(name = "email")
     private String email;
     @Column(name = "student_password")
@@ -29,18 +29,29 @@ public class Teacher {
     @Column(name = "LDAP")
     private String ldap;
     @Column(name = "course_name")
-    private String course_name;
+    private String courseName;
 
 
-    public Teacher(Integer ID, String last_name, String first_name, String email, String password, Integer userType, String ldap, String course_name) {
+    public Teacher(Integer ID, String firstName, String lastName, String email, String password, Integer userType, String ldap, String courseName) {
         this.ID = ID;
-        this.last_name = last_name;
-        this.first_name = first_name;
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.email = email;
         this.password = password;
         this.userType = userType;
         this.ldap = ldap;
-        this.course_name = course_name;
+        this.courseName = courseName;
+    }
+
+    public Teacher(String firstName, String lastName, String email, String password, Integer userType, String ldap, String courseName) {
+        this.ID = ID;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.password = password;
+        this.userType = userType;
+        this.ldap = ldap;
+        this.courseName = courseName;
     }
 
     public Teacher() {

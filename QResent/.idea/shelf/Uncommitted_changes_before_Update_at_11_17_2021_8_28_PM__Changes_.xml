@@ -1,0 +1,89 @@
+<changelist name="Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]" date="1637173738528" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 11/17/2021 8:28 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/services/AdminService.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/services/AdminService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/AdminService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/dao/Course.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/dao/Course.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/Course.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/repository/TeacherRepository.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/repository/TeacherRepository.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/TeacherRepository.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/services/AuthenticationService.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/services/AuthenticationService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/AuthenticationService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/services/StudentService.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/services/StudentService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/StudentService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/QResentApplication.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/QResentApplication.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/QResentApplication.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/controllers/QRController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/controllers/QRController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/QRController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/repository/AdminRepository.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/repository/AdminRepository.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/AdminRepository.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/controllers/HomeController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/controllers/HomeController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/HomeController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/dao/Teacher.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/dao/Teacher.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/Teacher.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/repository/StudentRepository.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/repository/StudentRepository.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/StudentRepository.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/dao/Admin.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/dao/Admin.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/Admin.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/services/TeacherService.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/services/TeacherService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/TeacherService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/dao/Student.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/dao/Student.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/Student.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/services/CourseService.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/services/CourseService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/CourseService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/qr/qresent/repository/CourseRepository.class" />
+    <option name="AFTER_PATH" value="target/classes/com/qr/qresent/repository/CourseRepository.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/CourseRepository.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/com/qr/qresent/QResentApplicationTests.class" />
+    <option name="AFTER_PATH" value="target/test-classes/com/qr/qresent/QResentApplicationTests.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM_[Changes]/QResentApplicationTests.class" />
+  </binary>
+</changelist>

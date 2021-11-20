@@ -3,14 +3,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './components/login';
 import Home from './components/home';
 import Header from './components/header';
-import QRRepresent from "./components/qrcode";
 import SignUp from "./components/signup";
 //import SignInOutContainer from "./containers/sign-inout-container";
 import QrSubmit from "./components/qrSubmit";
-import StudentProfile from './components/studentProfile';
-import ProfessorProfile from './components/professorProfile';
-import AdminProfile from './components/adminstratorProfile';
+import QrCode from "./components/qrcode";
 import ManageAccount from './components/manageAccount';
+import Success from './components/success';
+import ConfigCourse from './components/configCourse';
+import Profiles from './components/profiles';
 
 function App() {
   return (
@@ -24,15 +24,13 @@ function App() {
 					<Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={SignUp} />
           <Route exact path='/qrsubmit' component={QrSubmit} />
-          <Route exact path='/pprofile' component={ProfessorProfile} />
-          <Route exact path='/sprofile' component={StudentProfile} />
-          <Route exact path='/aprofile' component={AdminProfile} />
-
+          <Route exact path='/qrcode' component={QrCode} />
+          <Route exact path='/done' component={Success} />
           <Route exact path='/manageAccount' component={ManageAccount} />
+          <Route exact path='/configcourse' component={ConfigCourse} />
+          <Route exact path='/profile' component={Profiles} />
         </Switch>
-          {/* <Login/> */}
-        </BrowserRouter>
-        {/* <QRRepresent/> */}
+        </BrowserRouter>   
       </div>
   </div>
   );
