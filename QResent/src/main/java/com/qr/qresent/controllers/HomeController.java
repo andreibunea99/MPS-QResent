@@ -81,7 +81,7 @@ public class HomeController {
 
     @RequestMapping(value = "/login", method = POST)
     @ResponseBody
-    public ResponseEntity<String> login (@RequestBody String user) {
+    public ResponseEntity<String> login(@RequestBody String user) {
         JsonObject jsonObject = JsonParser.parseString(user).getAsJsonObject();
 
         String email = jsonObject.get("email").getAsString();
@@ -113,6 +113,17 @@ public class HomeController {
                 jsonObject.addProperty("courseName", teacher.getCourseName());
                 jsonObject.addProperty("userType", teacher.getUserType());
                 jsonObject.addProperty("token", authService.getTokenProf(teacher.getEmail(), teacher.getID()));
+
+                List<CourseInfo> infoList = courseInfoService.getByCourseName(teacher.getCourseName());
+
+                if (infoList.size() < 1) {
+                    return new ResponseEntity<String>("", HttpStatus.NOT_FOUND);
+                }
+
+                CourseInfo info = infoList.get(0);
+
+                jsonObject = infoToJson(info);
+
                 return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
             }
         }
@@ -227,35 +238,35 @@ public class HomeController {
         return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(value = "/configCourse/{id}", method = GET)
-    @ResponseBody
-    public ResponseEntity<String> getConfigCourse(@PathVariable String id, @RequestBody String json) {
-        JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
-        System.out.println(jsonObject);
-
-        String token = jsonObject.get("token").getAsString();
-
-        if (authService.isProfessor(Integer.valueOf(id), token)) {
-            Teacher t = teacherService.getById(Integer.valueOf(id));
-
-            if (t == null) {
-                return new ResponseEntity<String>("", HttpStatus.NOT_FOUND);
-            }
-
-            List<CourseInfo> infoList = courseInfoService.getByCourseName(t.getCourseName());
-
-            if (infoList.size() < 1) {
-                return new ResponseEntity<String>("", HttpStatus.NOT_FOUND);
-            }
-
-            CourseInfo info = infoList.get(0);
-
-            JsonObject obj = infoToJson(info);
-
-            return new ResponseEntity<String>(obj.toString(), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
-    }
+//    @RequestMapping(value = "/configCourse/{id}", method = GET)
+//    @ResponseBody
+//    public ResponseEntity<String> getConfigCourse(@PathVariable String id, @RequestBody String json) {
+//        JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+//        System.out.println(jsonObject);
+//
+//        String token = jsonObject.get("token").getAsString();
+//
+//        if (authService.isProfessor(Integer.valueOf(id), token)) {
+//            Teacher t = teacherService.getById(Integer.valueOf(id));
+//
+//            if (t == null) {
+//                return new ResponseEntity<String>("", HttpStatus.NOT_FOUND);
+//            }
+//
+//            List<CourseInfo> infoList = courseInfoService.getByCourseName(t.getCourseName());
+//
+//            if (infoList.size() < 1) {
+//                return new ResponseEntity<String>("", HttpStatus.NOT_FOUND);
+//            }
+//
+//            CourseInfo info = infoList.get(0);
+//
+//            JsonObject obj = infoToJson(info);
+//
+//            return new ResponseEntity<String>(obj.toString(), HttpStatus.OK);
+//        }
+//
+//        return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
+//    }
 
 }
