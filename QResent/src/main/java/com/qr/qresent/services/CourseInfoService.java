@@ -22,4 +22,8 @@ public class CourseInfoService {
     public CourseInfo getById(Integer id) {
         return courseInfoRepository.getById(id);
     }
+
+    public List<CourseInfo> getByCourseName(String courseName) {
+        return courseInfoRepository.getByCourseName(courseName);
+    }
 }
