@@ -14,7 +14,6 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import StudentProfile from './studentProfile';
 const ManageAccount = ({ setValue }) => {
   const paperStyle = {
     padding: 60,
@@ -48,10 +47,10 @@ const ManageAccount = ({ setValue }) => {
     };
     axios
       .post("http://localhost:8080/manageAccount/" + user_g.ID, user)
-      .then(() => {
-        localStorage.setItem("GROUP", user.group);
-        localStorage.setItem("LDAP", user.ldap);
-        history.push("/sprofile");
+      .then((response) => {
+        const jsonData =JSON.stringify(response.data);
+        localStorage.setItem("USER", jsonData);
+        history.push('/profile');
        })
       .catch((error) => {
         alert("Bad credentials");

@@ -52,18 +52,11 @@ const Login = ({ setValue }) => {
       .then((response) => {
       const jsonData =JSON.stringify(response.data);
       localStorage.setItem("USER", jsonData);
-      
-      const data = JSON.parse(jsonData);
-      if(data.userType == "1") {
-        history.push("/pprofile");
-      } else if(data.userType == "2") {
-        history.push("/sprofile");
-      } else {
-        history.push("/aprofile");
-      }
+      history.push('/profile');
+
     })
       .catch((error) => {
-        alert("Bad credentials");
+        alert(error);
       });
   };
 

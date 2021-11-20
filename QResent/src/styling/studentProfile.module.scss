@@ -1,11 +1,28 @@
-.col-md-4 {
-  margin-bottom: 30px;
-}
-
 .card {
+  position: relative;
+  left: 20%;
+  width: 50%;
+  height: 100%;
   padding: 30px;
   border: solid 1px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
+  // align-self: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  > p {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 0px;
+  }
+  > a {
+  }
+  .icon {
+    position: relative;
+    left: 100%;
+    bottom: 230px;
+    text-decoration: none;
+  }
+
   .cardBody {
     display: flex;
     flex-direction: column;
@@ -16,6 +33,8 @@
       /* align-items: center; */
       /* margin-left: ; */
       /* margin-top: 10%; */
+      position: relative;
+      left: 1%;
       align-self: center;
       display: flex;
       justify-content: center;
@@ -41,14 +60,23 @@
 .avatar {
   width: 140px;
   margin: auto;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .avatar img {
-  border: solid 6px transparent;
+  border: solid 4px transparent;
   border-radius: 50%;
+  width: 200px;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.card:hover .avatar img {
-  border-color: rgb(99, 204, 131);
-}
+// .card:hover .avatar img {
+//   border-color: #5d95f5;
+// }
 
 .btn {
   border-radius: 25px;

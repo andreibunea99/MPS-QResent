@@ -143,7 +143,7 @@ public class HomeController {
         String password = jsonObject.get("password").getAsString();
         int userType = jsonObject.get("userType").getAsInt();
 //        String ldap = jsonObject.get("ldap").getAsString();
-        String course = jsonObject.get("course").getAsString();
+        //System.out.println();
 
         if (userType == 0) {
             adminService.save(new Admin(email, password, userType));
@@ -151,6 +151,7 @@ public class HomeController {
         }
 
         if (userType == 1) {
+            String course = jsonObject.get("course").getAsString();
             teacherService.save(new Teacher(firstName, lastName, email, password, userType, "NOT_SETUP", course));
             return new ResponseEntity<String>("", HttpStatus.OK);
         }
@@ -172,7 +173,7 @@ public class HomeController {
                 jsonObject.get("ldap").getAsString());
 
         if (r) {
-            return new ResponseEntity<String>("", HttpStatus.OK);
+            return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
         }
 
         return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);

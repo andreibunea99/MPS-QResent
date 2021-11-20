@@ -4,39 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="004d4942-80c1-4627-9966-541d1f433e71" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/dao/Course.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/repository/AdminRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/repository/CourseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/repository/TeacherRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/services/AdminService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/services/CourseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/services/TeacherService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="004d4942-80c1-4627-9966-541d1f433e71" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/adminstratorProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/adminstratorProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/manageAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/manageAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/professorProfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/studentProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/studentProfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/dao/AdminDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/dao/AdminDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/dao/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/dao/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/dao/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/dao/StudentDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/dao/TeacherDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/dao/TeacherDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/dao/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/entities/AdminEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/entities/StudentEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/entities/TeacherEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/repository/StudentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/QResentApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/QResentApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/controllers/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/controllers/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/StudentDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/StudentDAOImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/entities/AdminEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/entities/StudentEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/entities/TeacherEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/controllers/QRController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/controllers/QRController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/Teacher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/AdminRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/AdminRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/CourseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/CourseRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/StudentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/StudentRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/StudentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/TeacherRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/TeacherRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/AdminService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/AuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/AuthenticationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/CourseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/CourseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/StudentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/StudentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/TeacherService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/TeacherService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/qr/qresent/QResentApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/qr/qresent/QResentApplicationTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +99,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="QResent" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="QResent" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="QResentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="QResent" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qr.qresent.QResentApplication" />
@@ -137,6 +146,17 @@
               <option name="CUSTOM_BOOLEAN_PROPERTIES">
                 <map>
                   <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
                 </map>
               </option>
             </State>
