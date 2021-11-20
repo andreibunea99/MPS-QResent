@@ -32,4 +32,14 @@ public class CourseInfo {
     @Column(name = "timetable")
     private String timetable;
 
+    public CourseInfo(String courseName, String description, String minReqHomework, String minReqProject,
+                      String minReqExam, String bonus, String timetable) {
+        this.courseName = courseName;
+        this.description = description;
+        this.minReqHomework = minReqHomework;
+        this.minReqProject = minReqProject;
+        this.minReqExam = minReqExam;
+        this.bonus = bonus;
+        this.timetable = timetable;
+    }
 }

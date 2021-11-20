@@ -11,9 +11,9 @@ import java.util.Objects;
 @Service
 public class AuthenticationService {
 
-    Map<Long, String> profMap = new HashMap<>();
-    Map<Long, String> studMap = new HashMap<>();
-    Map<Long, String> adminMap = new HashMap<>();
+    Map<Integer, String> profMap = new HashMap<>();
+    Map<Integer, String> studMap = new HashMap<>();
+    Map<Integer, String> adminMap = new HashMap<>();
 
     public String getToken(String originalString) {
         String sha256hex = Hashing.sha256()
@@ -22,46 +22,58 @@ public class AuthenticationService {
         return sha256hex;
     }
 
-    public String getTokenProf(String originalString) {
+    public String getTokenProf(String originalString, Integer id) {
         String hiddenKey = "Team2ProfToken";
         originalString = originalString.substring(0, originalString.length() / 2) + hiddenKey +
                 originalString.substring(originalString.length() / 2);
 
 
-        return getToken(originalString);
+        String token = getToken(originalString);
+
+        profMap.put(id, token);
+
+        return token;
     }
 
-    public String getTokenStuden(String originalString) {
+    public String getTokenStuden(String originalString, Integer id) {
         String hiddenKey = "Team2StudToken";
         originalString = originalString.substring(0, originalString.length() / 2) + hiddenKey +
                 originalString.substring(originalString.length() / 2);
 
-        return getToken(originalString);
+        String token = getToken(originalString);
+
+        studMap.put(id, token);
+
+        return token;
     }
 
-    public String getTokenAdmin(String originalString) {
+    public String getTokenAdmin(String originalString, Integer id) {
         String hiddenKey = "Team2AdminToken";
         originalString = originalString.substring(0, originalString.length() / 2) + hiddenKey +
                 originalString.substring(originalString.length() / 2);
 
-        return getToken(originalString);
+        String token = getToken(originalString);
+
+        adminMap.put(id, token);
+
+        return token;
     }
 
-    public Boolean isProfessor(Long id, String token) {
+    public Boolean isProfessor(Integer id, String token) {
         if (profMap.containsKey(id) && Objects.equals(profMap.get(id), token)) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
-    public Boolean isStudent(Long id, String token) {
+    public Boolean isStudent(Integer id, String token) {
         if (studMap.containsKey(id) && Objects.equals(studMap.get(id), token)) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
-    public Boolean isAdmin(Long id, String token) {
+    public Boolean isAdmin(Integer id, String token) {
         if (adminMap.containsKey(id) && Objects.equals(adminMap.get(id), token)) {
             return Boolean.TRUE;
         }

@@ -1,8 +1,6 @@
 package com.qr.qresent.controllers;
-import com.qr.qresent.dao.Admin;
-import com.qr.qresent.dao.Course;
-import com.qr.qresent.dao.Student;
-import com.qr.qresent.dao.Teacher;
+import com.google.gson.JsonArray;
+import com.qr.qresent.dao.*;
 import com.qr.qresent.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -96,6 +94,7 @@ public class HomeController {
                 jsonObject.addProperty("group", student.getGroup());
                 jsonObject.addProperty("courseName", "");
                 jsonObject.addProperty("userType", student.getUserType());
+                jsonObject.addProperty("token", authService.getTokenStuden(student.getEmail(), student.getID()));
                 return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
             }
         }
@@ -110,6 +109,7 @@ public class HomeController {
                 jsonObject.addProperty("group", "");
                 jsonObject.addProperty("courseName", teacher.getCourseName());
                 jsonObject.addProperty("userType", teacher.getUserType());
+                jsonObject.addProperty("token", authService.getTokenProf(teacher.getEmail(), teacher.getID()));
                 return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
             }
         }
@@ -124,6 +124,7 @@ public class HomeController {
                 jsonObject.addProperty("group", "");
                 jsonObject.addProperty("courseName", "");
                 jsonObject.addProperty("userType", admin.getUserType());
+                jsonObject.addProperty("token", authService.getTokenAdmin(admin.getEmail(), admin.getID()));
                 return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
             }
         }
@@ -139,11 +140,8 @@ public class HomeController {
         String firstName = jsonObject.get("firstName").getAsString();
         String lastName = jsonObject.get("lastName").getAsString();
         String email = jsonObject.get("email").getAsString();
-//        String group = jsonObject.get("group").getAsString();
         String password = jsonObject.get("password").getAsString();
         int userType = jsonObject.get("userType").getAsInt();
-//        String ldap = jsonObject.get("ldap").getAsString();
-        //System.out.println();
 
         if (userType == 0) {
             adminService.save(new Admin(email, password, userType));
@@ -174,6 +172,41 @@ public class HomeController {
 
         if (r) {
             return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "/configCourse/{id}", method = POST)
+    @ResponseBody
+    public ResponseEntity<String> configCourse(@PathVariable String id, @RequestBody String json) {
+        JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+
+        String token = jsonObject.get("token").getAsString();
+
+        if (authService.isAdmin(Integer.valueOf(id), token) || authService.isProfessor(Integer.valueOf(id), token)) {
+            CourseInfo info = new CourseInfo(jsonObject.get("courseName").getAsString(),
+                    jsonObject.get("description").getAsString(),
+                    jsonObject.get("minReqHomework").getAsString(),
+                    jsonObject.get("minReqProject").getAsString(),
+                    jsonObject.get("minReqExam").getAsString(),
+                    jsonObject.get("bonus").getAsString(),
+                    jsonObject.get("timetable").getAsString());
+            JsonObject obj = new JsonObject();
+            JsonArray array = new JsonArray();
+            String[] parts = info.getTimetable().split(";");
+            for (String part : parts) {
+                array.add(part);
+            }
+            obj.addProperty("ID", info.getID());
+            obj.addProperty("courseName", info.getCourseName());
+            obj.addProperty("description", info.getDescription());
+            obj.addProperty("minReqHomework", info.getMinReqHomework());
+            obj.addProperty("minReqProject",info.getMinReqProject());
+            obj.addProperty("minReqExam", info.getMinReqExam());
+            obj.addProperty("bonus", info.getBonus());
+            obj.add("timetable", array);
+            return new ResponseEntity<String>(obj.toString(), HttpStatus.OK);
         }
 
         return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
