@@ -28,6 +28,14 @@ public class Course {
         this.date = date;
     }
 
+    public Course(String courseName, Integer studentId, Integer teacherId, String date) {
+        this.ID = ID;
+        this.courseName = courseName;
+        this.studentId = studentId;
+        this.teacherId = teacherId;
+        this.date = date;
+    }
+
     public Course() {
 
     }

@@ -62,14 +62,12 @@ const Login = ({ setValue }) => {
       localStorage.setItem("USER", jsonData);
       const user = JSON.parse(jsonData);
 
-      //console.log("teo" + localStorage.getItem("TEO"));
-      
-      if(localStorage.getItem("INFO_COURSE") === null) {
-      const jsonDataC =JSON.stringify(initialCourse);
-      localStorage.setItem("INFO_COURSE", jsonDataC);
-      }
+      console.log(jsonData);
 
       if(user.userType == "1") {
+        // const infoCourse = user.courseInfo;
+        // console.log(infoCourse);
+        // localStorage.setItem("INFO_COURSE", infoCourse);
         history.push('/teacher/profile');
       } else if(user.userType == "2") {
         history.push('/student/profile');

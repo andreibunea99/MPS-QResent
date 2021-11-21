@@ -1,5 +1,6 @@
 package com.qr.qresent.controllers;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.qr.qresent.dao.*;
 import com.qr.qresent.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,26 +106,24 @@ public class HomeController {
         if (teacherService.getByEmail(email).size() != 0) {
             Teacher teacher = teacherService.getByEmail(email).get(0);
             if (teacher.getPassword().equals(password)) {
-                jsonObject.addProperty("ID", teacher.getID());
-                jsonObject.addProperty("firstName", teacher.getFirstName());
-                jsonObject.addProperty("lastName", teacher.getLastName());
-                jsonObject.addProperty("ldap", teacher.getLdap());
-                jsonObject.addProperty("group", "");
-                jsonObject.addProperty("courseName", teacher.getCourseName());
-                jsonObject.addProperty("userType", teacher.getUserType());
-                jsonObject.addProperty("token", authService.getTokenProf(teacher.getEmail(), teacher.getID()));
+                JsonObject obj = addTeacherDetails(teacher);
 
                 List<CourseInfo> infoList = courseInfoService.getByCourseName(teacher.getCourseName());
 
+                CourseInfo c;
+
                 if (infoList.size() < 1) {
-                    return new ResponseEntity<String>("", HttpStatus.NOT_FOUND);
+                    c = new CourseInfo(teacher.getCourseName(), "NOT_SETUP",
+                            "NOT_SETUP", "NOT_SETUP", "NOT_SETUP",
+                            "NOT_SETUP", "NOT_SETUP");
+                    courseInfoService.save(c);
+                } else {
+                    c = infoList.get(0);
                 }
 
-                CourseInfo info = infoList.get(0);
+                obj.add("courseInfo", infoToJson(c));
 
-                jsonObject = infoToJson(info);
-
-                return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
+                return new ResponseEntity<String>(obj.toString(), HttpStatus.OK);
             }
         }
 
@@ -210,27 +209,52 @@ public class HomeController {
         return obj;
     }
 
+    private JsonObject addTeacherDetails(Teacher teacher) {
+        JsonObject jsonObject = new JsonObject();
+
+        jsonObject.addProperty("ID", teacher.getID());
+        jsonObject.addProperty("firstName", teacher.getFirstName());
+        jsonObject.addProperty("lastName", teacher.getLastName());
+        jsonObject.addProperty("ldap", teacher.getLdap());
+        jsonObject.addProperty("group", "");
+        jsonObject.addProperty("courseName", teacher.getCourseName());
+        jsonObject.addProperty("userType", teacher.getUserType());
+        jsonObject.addProperty("token", authService.getTokenProf(teacher.getEmail(), teacher.getID()));
+
+        return jsonObject;
+    }
+
     @RequestMapping(value = "/configCourse/{id}", method = POST)
     @ResponseBody
     public ResponseEntity<String> configCourse(@PathVariable String id, @RequestBody String json) {
         JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
-        System.out.println(jsonObject);
 
         String token = jsonObject.get("token").getAsString();
 
 
-        if (authService.isAdmin(Integer.valueOf(id), token) || authService.isProfessor(Integer.valueOf(id), token)) {
-            CourseInfo info = new CourseInfo(jsonObject.get("courseName").getAsString(),
-                    jsonObject.get("description").getAsString(),
-                    jsonObject.get("minReqHomework").getAsString(),
-                    jsonObject.get("minReqProject").getAsString(),
-                    jsonObject.get("minReqExam").getAsString(),
-                    jsonObject.get("bonus").getAsString(),
-                    jsonObject.get("timetable").getAsString());
+        if (authService.isProfessor(Integer.valueOf(id), token)) {
+            List<CourseInfo> infoList = courseInfoService.getByCourseName(jsonObject.get("courseName").getAsString());
+            CourseInfo info;
+            if (infoList.size() < 1) {
+                return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
+            } else {
+                info = infoList.get(0);
+            }
+            info.setDescription(jsonObject.get("description").getAsString());
+            info.setMinReqHomework(jsonObject.get("minReqHomework").getAsString());
+            info.setMinReqProject(jsonObject.get("minReqProject").getAsString());
+            info.setMinReqExam(jsonObject.get("minReqExam").getAsString());
+            info.setBonus(jsonObject.get("bonus").getAsString());
+            info.setTimetable(jsonObject.get("timetable").getAsString());
+
+            Teacher teacher = teacherService.getById(Integer.valueOf(id));
+
+            JsonObject obj = addTeacherDetails(teacher);
+
+
+            obj.add("courseInfo", infoToJson(info));
 
             courseInfoService.save(info);
-
-            JsonObject obj = infoToJson(info);
 
             return new ResponseEntity<String>(obj.toString(), HttpStatus.OK);
         }
@@ -238,35 +262,28 @@ public class HomeController {
         return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
     }
 
-//    @RequestMapping(value = "/configCourse/{id}", method = GET)
-//    @ResponseBody
-//    public ResponseEntity<String> getConfigCourse(@PathVariable String id, @RequestBody String json) {
-//        JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
-//        System.out.println(jsonObject);
-//
-//        String token = jsonObject.get("token").getAsString();
-//
-//        if (authService.isProfessor(Integer.valueOf(id), token)) {
-//            Teacher t = teacherService.getById(Integer.valueOf(id));
-//
-//            if (t == null) {
-//                return new ResponseEntity<String>("", HttpStatus.NOT_FOUND);
-//            }
-//
-//            List<CourseInfo> infoList = courseInfoService.getByCourseName(t.getCourseName());
-//
-//            if (infoList.size() < 1) {
-//                return new ResponseEntity<String>("", HttpStatus.NOT_FOUND);
-//            }
-//
-//            CourseInfo info = infoList.get(0);
-//
-//            JsonObject obj = infoToJson(info);
-//
-//            return new ResponseEntity<String>(obj.toString(), HttpStatus.OK);
-//        }
-//
-//        return new ResponseEntity<String>("", HttpStatus.BAD_REQUEST);
-//    }
+    @RequestMapping(value = "/studentsList/{courseName}", method = GET)
+    @ResponseBody
+    public ResponseEntity<String> studentList(@PathVariable String courseName) {
+
+        List<Course> courseList = courseService.getByCourseName(courseName);
+
+        JsonObject jsonObject = new JsonObject();
+
+        JsonArray array = new JsonArray();
+
+        for (Course c : courseList) {
+            JsonObject obj = new JsonObject();
+            obj.addProperty("courseName", c.getCourseName());
+            obj.addProperty("studentLdap", studentService.getById(c.getStudentId()).getLdap());
+            obj.addProperty("teacherLdap", teacherService.getById(c.getTeacherId()).getLdap());
+            obj.addProperty("date", c.getDate());
+            array.add(obj);
+        }
+
+        jsonObject.add("studentList", array);
+
+        return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
+    }
 
 }

@@ -24,4 +24,8 @@ public class CourseService {
     public Course getById(Integer id) {
         return courseRepository.getById(id);
     }
+
+    public List<Course> getByCourseName(String courseName) {
+        return courseRepository.getByCourseName(courseName);
+    }
 }

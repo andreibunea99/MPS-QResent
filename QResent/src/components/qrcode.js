@@ -7,7 +7,7 @@ import style from '../styling/qrcode.module.scss';
 const QRRepresent = () => {
     const [src, setSrc] = useState("");
     useEffect(() => {
-      QRCode.toDataURL("http://55df-2a02-2f04-c114-800-916e-66fc-9b43-e726.ngrok.io/qrsubmit").then(setSrc);
+      QRCode.toDataURL("http://e311-89-136-175-3.ngrok.io/qrsubmit").then(setSrc);
      
      }, []);
      return (

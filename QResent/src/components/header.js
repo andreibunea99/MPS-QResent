@@ -12,9 +12,9 @@ class Header extends React.Component {
             <Link className={style.link} to="/"><h className={style.header}>QResent</h></Link>
             <Link className={style.link} to="/signup"><LoginIcon className={style.icon}/></Link>
             {/* <Link className={style.link} to="./account"><h><PersonIcon/></h></Link> */}
-            {/* <Link className={style.link} to="/login"><h><LockIcon/></h></Link>
+            {/* <Link className={style.link} to="/login"><h><LockIcon/></h></Link>*/
             <Link to="/qrsubmit"><h>SUBMIT</h></Link>
-            <Link to="/sprofile"><h>studentProfile</h></Link> */}
+            /*<Link to="/sprofile"><h>studentProfile</h></Link> */}
             {/* <Link to="/done"><h>DONE</h></Link>
 
             <Link to="/qrsubmit"><h>s</h></Link> */}

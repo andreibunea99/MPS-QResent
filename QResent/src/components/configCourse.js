@@ -64,7 +64,8 @@ const ConfigCourse = ({ setValue }) => {
       .post("http://localhost:8080/configCourse/" + user.ID, info)
       .then((response) => {
         const jsonData =JSON.stringify(response.data);
-        localStorage.setItem("INFO_COURSE", jsonData);
+        localStorage.setItem("USER", jsonData);
+        console.log(jsonData);
         history.push('/teacher/profile');
        })
       .catch((error) => {
