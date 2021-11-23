@@ -22,6 +22,7 @@ public class TokenService {
                 .hashString(originalString, StandardCharsets.UTF_8)
                 .toString();
         teacherMap.put(id, sha256hex);
+        System.out.println("Generated for: " + id + " token: " + sha256hex);
         return sha256hex;
     }
 

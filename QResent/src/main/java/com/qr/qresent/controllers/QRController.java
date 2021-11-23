@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("*")
 @Controller
 public class QRController {
 
@@ -37,10 +37,9 @@ public class QRController {
     @Autowired
     StudentService studentService;
 
-    @RequestMapping(value = "/qrSubmit/{idStudent}/{qrToken}", method = POST)
+    @RequestMapping(value = "/qrSubmit/{qrToken}", method = POST)
     @ResponseBody
-    public ResponseEntity<String> qrSubmit(@PathVariable String idStudent,
-                                           @PathVariable String qrToken, @RequestBody String user) {
+    public ResponseEntity<String> qrSubmit(@PathVariable String qrToken, @RequestBody String user) {
         System.out.println("hello");
         JsonObject jsonObject = JsonParser.parseString(user).getAsJsonObject();
 
@@ -55,10 +54,18 @@ public class QRController {
 
         Teacher teacher = teacherService.getById(tokenService.getIdFromToken(qrToken));
 
-        Course course = new Course(teacher.getCourseName(), Integer.valueOf(idStudent), teacher.getID(),
+        System.out.println("hihi");
+        System.out.println(qrToken);
+        System.out.println(teacher.getID());
+        System.out.println(tokenService.getIdFromToken(qrToken));
+
+        Course course = new Course(teacher.getCourseName(), studentService.getByEmail(email).get(0).getID(), teacher.getID(),
                 LocalDateTime.now().toString());
 
         courseService.save(course);
+
+        System.out.println("hihi");
+        System.out.println(qrToken);
 
         return new ResponseEntity<String>("", HttpStatus.OK);
     }
