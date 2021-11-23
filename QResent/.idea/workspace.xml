@@ -5,25 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004d4942-80c1-4627-9966-541d1f433e71" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/src/media/token.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styling/done.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/configCourse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/configCourse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/manageAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/manageAccount.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/qrSubmit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrSubmit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/qrcode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrcode.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/studentProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/studentProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/success.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/success.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/teacherProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacherProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/services/CourseInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/services/CourseInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styling/teacher.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styling/teacher.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/controllers/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/controllers/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/AdminService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/AuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/AuthenticationService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +43,18 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="JPA Structure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="JPA Structure" value="false" />
+      </map>
+    </option>
   </component>
   <component name="ProjectId" id="20udBWbbaBJlucvTvLifOyk2BjP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -120,6 +126,7 @@
       <workItem from="1636898276842" duration="9864000" />
       <workItem from="1636916855319" duration="3170000" />
       <workItem from="1636976078822" duration="3262000" />
+      <workItem from="1637601119056" duration="5282000" />
     </task>
     <servers />
   </component>

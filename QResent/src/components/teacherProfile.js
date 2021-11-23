@@ -16,8 +16,7 @@ import Qr from '../media/qr.png';
 
 import {Button} from "@mui/material";
 import axios from "axios";
-import * as FileSaver from "file-saver";
-import * as XLSX from "xlsx";
+
 
 const TeacherProfile = ({ token }) => {
     let data = localStorage.getItem("USER");
@@ -36,24 +35,11 @@ const TeacherProfile = ({ token }) => {
     const t = {token};
     t.token = user.token;
     
-    const fileType =
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
-    const fileExtension = ".xlsx";
-    
-    const exportToCSV = (apiData, fileName) => {
-        const ws = XLSX.utils.json_to_sheet(apiData);
-        const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
-        const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-        const data = new Blob([excelBuffer], { type: fileType });
-        FileSaver.saveAs(data, fileName + fileExtension);
-    };
-
-
     function qrSubmit(user) {
         console.log(user.ID);
         console.log(t)
         axios
-          .get("http://localhost:8080/qrToken/" + user.ID + "/" + user.token)
+          .get("http://cbb3-89-136-175-3.ngrok.io/qrToken/" + user.ID + "/" + user.token)
           .then((response) => {
               console.log("sadasdsadsa");
             // const jsonData =JSON.stringify(response.data);
@@ -69,19 +55,22 @@ const TeacherProfile = ({ token }) => {
           }); 
       };
       const courseName = user.courseName;
-      const today = new Date();
-      const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-      const studentsList = new Array();
-      const getStudentsList = async () => {
+
+      function getStudentsList (user)  {
         axios
-          .get("http://localhost:8080/studentsList/" + user.ID + "/" + user.token)
+          .get("http://cbb3-89-136-175-3.ngrok.io/studentsList/" + user.courseName)
           .then((response) => {
-            studentsList = response.data;
+            const jsonData =JSON.stringify(response.data);
+            localStorage.setItem("STUDENTS_LIST", jsonData);
+            history.push('/generateQRList');
+
+        
         })
           .catch((error) => {
             alert(error);
           }); 
       };
+
     return (
         <div className={style.container}>
         <div className={style.card}>
@@ -119,8 +108,7 @@ const TeacherProfile = ({ token }) => {
         
          <img  style={{width:'20px'}} src={Qr}/> 
          <button style={{color:'black'}} onClick={() => { qrSubmit(user) }} >Generate QR</button>
-         {/* <button onClick={() => exportToCSV({getStudentsList()}, courseName + "_" + date)}>Export students grades</button> */}
-      
+         <button style={{color:'black'}} onClick={() => { getStudentsList(user) }} >Click hear to generate</button>      
         </div>  
     </div>
     );

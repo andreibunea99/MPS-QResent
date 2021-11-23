@@ -14,6 +14,7 @@ import ManageAccount from './components/manageAccount';
 import Success from './components/success';
 import ConfigCourse from './components/configCourse';
 import Profiles from './components/profiles';
+import SList from './components/generateStudentsList';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route exact path='/admin/profile' component={Admin} />
           <Route exact path='/configcourse' component={ConfigCourse} />
           <Route exact path='/profile' component={Profiles} />
+          <Route exact path='/generateQRList' component={SList} />
         </Switch>
         </BrowserRouter>   
       </div>

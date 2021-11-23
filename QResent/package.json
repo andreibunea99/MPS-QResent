@@ -24,6 +24,7 @@
     "react-native-file-server": "^1.0.2",
     "react-redirect": "^1.0.0",
     "react-router": "^6.0.1",
+    "react-router-use-location-state": "^3.0.0",
     "react-scripts": "4.0.3",
     "react-use-window-sessionstorage": "^1.0.9",
     "web-vitals": "^1.1.2",

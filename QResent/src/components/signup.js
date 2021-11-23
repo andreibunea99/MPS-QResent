@@ -62,7 +62,7 @@ const Signup = ({ setValue }) => {
       course
     };
     axios
-      .post("http://localhost:8080/register", user)
+      .post("http://cbb3-89-136-175-3.ngrok.io/register", user)
       .then(() => {
         alert('User was added!');
       })

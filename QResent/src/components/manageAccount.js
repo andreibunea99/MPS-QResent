@@ -46,7 +46,7 @@ const ManageAccount = ({ setValue }) => {
       ldap,
     };
     axios
-      .post("http://localhost:8080/manageAccount/" + user_g.ID, user)
+      .post("http://cbb3-89-136-175-3.ngrok.io/manageAccount/" + user_g.ID, user)
       .then((response) => {
         const jsonData =JSON.stringify(response.data);
         localStorage.setItem("USER", jsonData);

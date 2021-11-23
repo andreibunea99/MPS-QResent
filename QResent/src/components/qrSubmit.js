@@ -8,7 +8,7 @@ import {
   Button
 } from "@mui/material";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -20,11 +20,15 @@ const QrSubmit = ({ }) => {
           width: 500,
           margin: "0 auto",
         };
+
+        const usePathname = () => {
+          const location = useLocation();
+          const path = location.search.split('=');
+          return path[1];
+        }
+
         const headerStyle = { margin: 10 };
         const btnStyle = { margin: "8px 0", backgroundColor: "violet" };
-
-        const tokenQr = localStorage.getItem("QRToken");
-
 
         let data = localStorage.getItem("USER");
         const user = JSON.parse(data);
@@ -42,6 +46,9 @@ const QrSubmit = ({ }) => {
           email: "",
           token: "",
         };
+
+        const tokenQR = usePathname();
+
         
         const handleSubmit = async (values) => {
           const { email, token} =
@@ -50,11 +57,9 @@ const QrSubmit = ({ }) => {
             email,
             token,
           };
-          console.log(tokenQr + "       - " + infoStudent);
           axios
-            .post("http://localhost:8080/qrSubmit/" + user.ID + "/" + tokenQr, infoStudent)
+            .post("http://cbb3-89-136-175-3.ngrok.io/qrSubmit/" + tokenQR, infoStudent)
             .then(() => {
-              console.log("ok frontend1");
               history.push('/done');
             })
             .catch((error) => {
