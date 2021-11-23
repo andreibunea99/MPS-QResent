@@ -19,13 +19,17 @@ public class Course {
     private Integer teacherId;
     @Column(name = "date")
     private String date;
+    @Column(name = "qrToken")
+    private String qrToken;
 
-    public Course(Integer ID, String courseName, Integer studentId, Integer teacherId, String date) {
+
+    public Course(Integer ID, String courseName, Integer studentId, Integer teacherId, String date, String qrToken) {
         this.ID = ID;
         this.courseName = courseName;
         this.studentId = studentId;
         this.teacherId = teacherId;
         this.date = date;
+        this.qrToken = qrToken;
     }
 
     public Course(String courseName, Integer studentId, Integer teacherId, String date) {
