@@ -14,7 +14,6 @@ const TeachersList = () => {
     const history = useHistory();
 
     const getTeacher = (t) => {
-
         axios
             .get("http://e4c2-89-136-175-3.ngrok.io/listTeacher/" + t.id)
             .then((response) => {

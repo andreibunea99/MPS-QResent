@@ -28,4 +28,8 @@ public class CourseService {
     public List<Course> getByCourseName(String courseName) {
         return courseRepository.getByCourseName(courseName);
     }
+
+    public List<Course> getByQrToken(String qrToken) {
+        return courseRepository.getByQrToken(qrToken);
+    }
 }

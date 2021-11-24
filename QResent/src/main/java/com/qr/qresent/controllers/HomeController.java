@@ -16,7 +16,7 @@ import com.google.gson.JsonParser;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @Controller
 public class HomeController {
 
@@ -50,8 +50,8 @@ public class HomeController {
         Teacher teacher = new Teacher(1, "str", "str", "str", "str", 1, "str", "str");
         teacherService.save(teacher);
 
-        Course course = new Course(1, "name", 1,2, "da");
-        courseService.save(course);
+//        Course course = new Course(1, "name", 1,2, "da");
+//        courseService.save(course);
 
 
 
@@ -70,6 +70,30 @@ public class HomeController {
     public ResponseEntity<List<Teacher>> listTeacher () {
 
         return new ResponseEntity<List<Teacher>>(teacherService.findAll(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/listTeacher/{id}", method = GET)
+    @ResponseBody
+    public ResponseEntity<String> listTeacherId (@PathVariable String id) {
+        Teacher teacher = teacherService.getById(Integer.valueOf(id));
+        JsonObject obj = addTeacherDetails(teacher);
+
+        List<CourseInfo> infoList = courseInfoService.getByCourseName(teacher.getCourseName());
+
+        CourseInfo c;
+
+        if (infoList.size() < 1) {
+            c = new CourseInfo(teacher.getCourseName(), "NOT_SETUP",
+                    "NOT_SETUP", "NOT_SETUP", "NOT_SETUP",
+                    "NOT_SETUP", "NOT_SETUP");
+            courseInfoService.save(c);
+        } else {
+            c = infoList.get(0);
+        }
+
+        obj.add("courseInfo", infoToJson(c));
+
+        return new ResponseEntity<String>(obj.toString(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/listAdmin", method = GET)
@@ -264,6 +288,8 @@ public class HomeController {
     @RequestMapping(value = "/studentsList/{courseName}", method = GET)
     @ResponseBody
     public ResponseEntity<String> studentList(@PathVariable String courseName) {
+
+        System.out.println("Intru in studlist");
 
         List<Course> courseList = courseService.getByCourseName(courseName);
 
