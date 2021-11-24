@@ -40,6 +40,10 @@ public class TokenService {
         }
     }
 
+    public String getTokenFromTeacher(Integer id) {
+        return teacherMap.get(id);
+    }
+
     public Integer getIdFromToken(String token) {
         for (Integer id : teacherMap.keySet()) {
             if (teacherMap.get(id).equals(token)) {

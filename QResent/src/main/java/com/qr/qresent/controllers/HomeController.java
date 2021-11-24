@@ -50,8 +50,8 @@ public class HomeController {
         Teacher teacher = new Teacher(1, "str", "str", "str", "str", 1, "str", "str");
         teacherService.save(teacher);
 
-        Course course = new Course(1, "name", 1,2, "da");
-        courseService.save(course);
+//        Course course = new Course(1, "name", 1,2, "da");
+//        courseService.save(course);
 
 
 
