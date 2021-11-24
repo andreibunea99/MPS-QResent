@@ -12,23 +12,31 @@ import MinReq from '../media/min_req.png';
 import Bonus from '../media/bonus.png';
 import Time from '../media/time.png';
 import Qr from '../media/qr.png';
+import Stat from '../media/stat.png';
 
 
 import {Button} from "@mui/material";
 import axios from "axios";
 
+import Statistics from './statistic';
 
 const TeacherProfile = ({ token }) => {
+   
     let data = localStorage.getItem("USER");
-    const user = JSON.parse(data);
+    const userT = JSON.parse(data);
+    console.log("userT: " + userT.firstName);
+    let user = null;
+    if(userT.userType == "2") {
+      console.log(1);
+      let data2 = localStorage.getItem("TEACHER");
+      user = JSON.parse(data2);
+      console.log(user);
+    } else {
+      console.log(2);
+      user = userT;
+    }
     const course = user.courseInfo;
     console.log(course);
-
-    //console.log(data);
-    // let course2 = localStorage.getItem("INFO_COURSE");
-    // const course = JSON.parse(course2);
-   // console.log(course);
-
     const time = course.timetable;
 
     const history = useHistory();
@@ -36,10 +44,8 @@ const TeacherProfile = ({ token }) => {
     t.token = user.token;
     
     function qrSubmit(user) {
-        console.log(user.ID);
-        console.log(t)
         axios
-          .get("http://cbb3-89-136-175-3.ngrok.io/qrToken/" + user.ID + "/" + user.token)
+          .get("http://e4c2-89-136-175-3.ngrok.io/qrToken/" + user.ID + "/" + user.token)
           .then((response) => {
               console.log("sadasdsadsa");
             // const jsonData =JSON.stringify(response.data);
@@ -55,21 +61,31 @@ const TeacherProfile = ({ token }) => {
           }); 
       };
       const courseName = user.courseName;
-
       function getStudentsList (user)  {
         axios
-          .get("http://cbb3-89-136-175-3.ngrok.io/studentsList/" + user.courseName)
+          .get("http://e4c2-89-136-175-3.ngrok.io/studentsList/" + user.courseName)
           .then((response) => {
             const jsonData =JSON.stringify(response.data);
             localStorage.setItem("STUDENTS_LIST", jsonData);
             history.push('/generateQRList');
-
-        
         })
           .catch((error) => {
             alert(error);
           }); 
       };
+
+      const getLastStat = (user) => {
+        axios
+            .get("http://e4c2-89-136-175-3.ngrok.io/statLastToken/" + user.ID)
+            .then((response) => {
+             const jsonData =JSON.stringify(response.data);
+             console.log(jsonData);
+             localStorage.setItem("LIST", jsonData);
+        })
+            .catch((error) => {
+            alert(error);
+            }); 
+    };
 
     return (
         <div className={style.container}>
@@ -94,21 +110,25 @@ const TeacherProfile = ({ token }) => {
         <p >An universitar</p>
         <a>2021</a>
         <p>Course</p>
-        <a>{user.courseName}</a>
-        {course.description == "NOT_SETUP" && <a style={{fontSize: '12px', color: 'red'}}>     NOT CONFIGURED</a>}
-        {course.description != "NOT_SETUP" && <ul> <img  style={{width:'20px'}} src={Description}/>{course.description}</ul>}
-         <ul>   <img  style={{width:'20px'}} src={MinReq}/> Requirements<ul>{course.minReqHomework}</ul>
-         <ul>{course.minReqProject}</ul>
-         <ul>{course.minReqExam}</ul></ul>
-         <ul> <img  style={{width:'20px'}} src={Bonus}/> {course.bonus}</ul>
-         <ul>   <img  style={{width:'20px'}} src={Time}/> Schedule  <ul>{time.map((t) => (
-           <div> {t} </div>
-        ))} </ul> </ul>
+        {course.description == "NOT_SETUP" && <a>{user.courseName}</a>
+         && <a style={{fontSize: '12px', color: 'red'}}>     NOT CONFIGURED</a>}
+        {course.description != "NOT_SETUP" && <ul> <img  style={{width:'20px'}} src={Description}/>{course.description}</ul>  }
+        {course.minReqHomework != "NOT_SETUP" && <ul>   <img  style={{width:'20px'}} src={MinReq}/> Requirements<ul>{course.minReqHomework}</ul>
+         <ul>{course.minReqProject}</ul>  
+         <ul>{course.minReqExam}</ul></ul> }
+        {course.bonus != "NOT_SETUP" && <ul> <img  style={{width:'20px'}} src={Bonus}/> {course.bonus}</ul> }
+         {course.time == [] && <ul>   <img  style={{width:'20px'}} src={Time}/> Schedule  <ul>{time.map((t) => (
+           <div> {t} </div> 
+        ))} </ul> </ul> }  
          
-        
-         <img  style={{width:'20px'}} src={Qr}/> 
-         <button style={{color:'black'}} onClick={() => { qrSubmit(user) }} >Generate QR</button>
-         <button style={{color:'black'}} onClick={() => { getStudentsList(user) }} >Click hear to generate</button>      
+          {userT.userType != "2" &&  
+         <img  style={{width:'20px'}} src={Qr}/>  &&
+         <button style={{color:'black'}} onClick={() => { qrSubmit(user) }} >Generate QR</button> }
+                   {userT.userType != "2" &&  
+          <button style={{color:'black'}} onClick={() => { getStudentsList(user) }} >Click hear to generate</button> } 
+         {/* </div></div> <img  style={{width:'20px'}} src={Stat} onClick={() => { getLastStat(user) }} /> */}
+          <button  onClick={() => { getLastStat(user) }}>hey</button>
+          <Statistics/>
         </div>  
     </div>
     );

@@ -61,7 +61,7 @@ const ConfigCourse = ({ setValue }) => {
     info.courseName = user.courseName;
 
     axios
-      .post("http://localhost:8080/configCourse/" + user.ID, info)
+      .post("http://e4c2-89-136-175-3.ngrok.io/configCourse/" + user.ID, info)
       .then((response) => {
         const jsonData =JSON.stringify(response.data);
         localStorage.setItem("USER", jsonData);

@@ -13,9 +13,8 @@ import QrCode from "./components/qrcode";
 import ManageAccount from './components/manageAccount';
 import Success from './components/success';
 import ConfigCourse from './components/configCourse';
-import Profiles from './components/profiles';
 import SList from './components/generateStudentsList';
-
+import teachersList from './components/teachersList';
 function App() {
   return (
     <div className="App">
@@ -35,8 +34,8 @@ function App() {
           <Route exact path='/student/profile' component={Student} />
           <Route exact path='/admin/profile' component={Admin} />
           <Route exact path='/configcourse' component={ConfigCourse} />
-          <Route exact path='/profile' component={Profiles} />
           <Route exact path='/generateQRList' component={SList} />
+          <Route exact path='/teachersList' component={teachersList} />
         </Switch>
         </BrowserRouter>   
       </div>

@@ -5,19 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004d4942-80c1-4627-9966-541d1f433e71" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2021_8_28_PM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/statistic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/teachersList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/media/stat.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/configCourse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/configCourse.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/manageAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/manageAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/profiles.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/qrSubmit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrSubmit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/qrcode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrcode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/studentProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/studentProfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/teacherProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacherProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qr/qresent/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/qr/qresent/controllers/HomeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +129,7 @@
       <workItem from="1636898276842" duration="9864000" />
       <workItem from="1636916855319" duration="3170000" />
       <workItem from="1636976078822" duration="3262000" />
-      <workItem from="1637601119056" duration="5282000" />
+      <workItem from="1637601119056" duration="8265000" />
     </task>
     <servers />
   </component>

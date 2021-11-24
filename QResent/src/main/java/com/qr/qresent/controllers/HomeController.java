@@ -58,7 +58,6 @@ public class HomeController {
         return "test";
     }
 
-
     @RequestMapping(value = "/listStud", method = GET)
     @ResponseBody
     public ResponseEntity<List<Student>> listStud () {
