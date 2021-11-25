@@ -3,6 +3,8 @@ import React from 'react'
 import style from '../styling/studentProfile.module.scss';
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import profile from '../media/profile.png';
+
 
 const TeachersList = () => {
     let data = localStorage.getItem("USER");
@@ -15,7 +17,7 @@ const TeachersList = () => {
 
     const getTeacher = (t) => {
         axios
-            .get("http://e4c2-89-136-175-3.ngrok.io/listTeacher/" + t.id)
+            .get("http://8813-89-136-175-3.ngrok.io/listTeacher/" + t.id)
             .then((response) => {
             const jsonData =JSON.stringify(response.data);
             localStorage.setItem("TEACHER", jsonData);
@@ -37,8 +39,13 @@ const TeachersList = () => {
                  <ul>{teachers.map((t) => (
                 <div> 
                     
-                    <button onClick={() => { getTeacher(t) }}>
-                    {t.lastName} {t.firstName} </button></div>))} 
+                    <button className={style.list} onClick={() => { getTeacher(t) }}>
+                    <img
+                        src={profile}
+                        className="cardImg"
+                        alt=""
+                        style={{width:'20px',   borderRadius: '50%'                    }}
+                    />   {t.lastName} {t.firstName} </button></div>))} 
                 </ul> 
             </div>               
         </div>

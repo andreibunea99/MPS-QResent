@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import profile from '../media/profile.png';
 import style from '../styling/teacher.module.scss';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
@@ -13,15 +13,20 @@ import Bonus from '../media/bonus.png';
 import Time from '../media/time.png';
 import Qr from '../media/qr.png';
 import Stat from '../media/stat.png';
-
+import CustomPopup from './customPopUp';
 
 import {Button} from "@mui/material";
 import axios from "axios";
-
+import InsightsIcon from '@mui/icons-material/Insights';
 import Statistics from './statistic';
 
 const TeacherProfile = ({ token }) => {
-   
+  const [visibility, setVisibility] = useState(false);
+
+  const popupCloseHandler = (e) => {
+    setVisibility(e);
+  };
+
     let data = localStorage.getItem("USER");
     const userT = JSON.parse(data);
     console.log("userT: " + userT.firstName);
@@ -45,7 +50,7 @@ const TeacherProfile = ({ token }) => {
     
     function qrSubmit(user) {
         axios
-          .get("http://e4c2-89-136-175-3.ngrok.io/qrToken/" + user.ID + "/" + user.token)
+          .get("http://840f-188-25-105-59.ngrok.io/qrToken/" + user.ID + "/" + user.token)
           .then((response) => {
               console.log("sadasdsadsa");
             // const jsonData =JSON.stringify(response.data);
@@ -63,7 +68,7 @@ const TeacherProfile = ({ token }) => {
       const courseName = user.courseName;
       function getStudentsList (user)  {
         axios
-          .get("http://e4c2-89-136-175-3.ngrok.io/studentsList/" + user.courseName)
+          .get("http://840f-188-25-105-59.ngrok.io/studentsList/" + user.courseName)
           .then((response) => {
             const jsonData =JSON.stringify(response.data);
             localStorage.setItem("STUDENTS_LIST", jsonData);
@@ -76,7 +81,7 @@ const TeacherProfile = ({ token }) => {
 
       const getLastStat = (user) => {
         axios
-            .get("http://e4c2-89-136-175-3.ngrok.io/statLastToken/" + user.ID)
+            .get("http://840f-188-25-105-59.ngrok.io/statLastToken/" + user.ID)
             .then((response) => {
              const jsonData =JSON.stringify(response.data);
              console.log(jsonData);
@@ -121,14 +126,27 @@ const TeacherProfile = ({ token }) => {
            <div> {t} </div> 
         ))} </ul> </ul> }  
          
+         
           {userT.userType != "2" &&  
          <img  style={{width:'20px'}} src={Qr}/>  &&
-         <button style={{color:'black'}} onClick={() => { qrSubmit(user) }} >Generate QR</button> }
+         <button className={style.styleButton} style={{color:'black'}} onClick={() => { qrSubmit(user) }} >Generate QR</button> }
                    {userT.userType != "2" &&  
-          <button style={{color:'black'}} onClick={() => { getStudentsList(user) }} >Click hear to generate</button> } 
+          <p><button className={style.styleButton}
+            onClick={() => { getStudentsList(user) }} >Click hear to generate</button>  </p>}
          {/* </div></div> <img  style={{width:'20px'}} src={Stat} onClick={() => { getLastStat(user) }} /> */}
-          <button  onClick={() => { getLastStat(user) }}>hey</button>
-          <Statistics/>
+          <p><button className={style.styleButton} onClick={() => { getLastStat(user) }}>Collect statistics</button>
+          
+          <InsightsIcon onClick={(e) => setVisibility(!visibility)} src={Statistics} />
+          <CustomPopup
+        onClose={popupCloseHandler}
+        show={visibility}
+        title="Statistics"
+      >
+        <Statistics/>
+      </CustomPopup>
+          </p>
+          
+          
         </div>  
     </div>
     );

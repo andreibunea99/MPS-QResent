@@ -14,7 +14,27 @@
     font-weight: bold;
     line-height: 0px;
   }
-  > a {
+  .styleButton {
+    transition-duration: 0.4s;
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+    cursor: pointer;
+  }
+
+  .list {
+    background-color: white;
+    color: black;
+    border: transparent;
+    cursor: pointer;
+  }
+  .list:hover {
+    color: blue;
+    text-decoration: underline;
+  }
+  .styleButton:hover {
+    background-color: #e7e7e7;
+    color: white;
   }
   .icon {
     position: relative;
@@ -57,6 +77,10 @@
   box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.08);
 }
 
+.cardImg {
+  //size: 16px;
+  border-radius: 50%;
+}
 .avatar {
   width: 140px;
   margin: auto;

@@ -18,7 +18,7 @@ const StudentProfile  = () => {
 
     function getTeachersList ()  {
         axios
-            .get("http://e4c2-89-136-175-3.ngrok.io/listTeacher")
+            .get("http://840f-188-25-105-59.ngrok.io/listTeacher")
             .then((response) => {
             const jsonData =JSON.stringify(response.data);
             localStorage.setItem("TEACHERS_LIST", jsonData);
@@ -67,7 +67,7 @@ const StudentProfile  = () => {
                 <br/>
                 <a style={{fontSize: '13px', color: 'black'}}>Personal access tokens function like ordinary OAuth access tokens. They can be used instead of a password after scaning the QR code</a>
                 {/* <p style={{fontSize: '13px', color: 'black'}}><Link to="/teachersList">View the list of teachers</Link></p> */}
-                <button style={{color:'black'}} onClick={() => { getTeachersList() }} >Click hear to see teachers list</button>      
+                <p><button className={style.styleButton} style={{color:'black'}} onClick={() => { getTeachersList() }} >Click hear to see teachers list</button></p>      
             </div>               
         </div>
     );

@@ -3,34 +3,31 @@ import {Pie} from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 
 
-const data = localStorage.getItem("LIST");
-const array = JSON.parse(data);
-console.log("a" +array)
-
-
-const state = {
-  labels: ['Start', 'Middle', 'End'],
-    datasets: [
-    {
-      label: 'Rainfall',
-      backgroundColor: [
-        '#B21F00',
-        '#C9DE00',
-        '#2FDE00',
-      ],
-      hoverBackgroundColor: [
-      '#501800',
-      '#4B5000',
-      '#175000',
-      ],
-      data: array
-    }
-  ]
-}
-
 export default class App extends React.Component {
-
   render() {
+    const data = localStorage.getItem("LIST");
+const array = JSON.parse(data);
+console.log("a" + array)
+const state = {
+    labels: ['Start', 'Middle', 'End'],
+      datasets: [
+      {
+        label: 'Rainfall',
+        backgroundColor: [
+        '#e4d9ff',          
+          '#273469',
+          '#1e2749'
+        ],
+        hoverBackgroundColor: [
+        '#E6D9FD',
+        '#2A3166',
+        '#202648'
+        ],
+        data: array
+      }
+    ]
+  }
+
     return (
       <div>
         <Pie
@@ -41,6 +38,12 @@ export default class App extends React.Component {
               text:'Average Rainfall per month',
               fontSize:20
             },
+            width:10,
+height:5,
+            options:{
+                responsive: true,
+                maintainAspectRatio: true,
+              },
             legend:{
               display:true,
               position:'right'
