@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,7 +44,6 @@ public class QRController {
     @RequestMapping(value = "/qrSubmit/{qrToken}", method = POST)
     @ResponseBody
     public ResponseEntity<String> qrSubmit(@PathVariable String qrToken, @RequestBody String user) {
-        System.out.println("hello");
         JsonObject jsonObject = JsonParser.parseString(user).getAsJsonObject();
 
         String email = jsonObject.get("email").getAsString();
@@ -57,18 +57,10 @@ public class QRController {
 
         Teacher teacher = teacherService.getById(tokenService.getIdFromToken(qrToken));
 
-        System.out.println("hihi");
-        System.out.println(qrToken);
-        System.out.println(teacher.getID());
-        System.out.println(tokenService.getIdFromToken(qrToken));
-
         Course course = new Course(teacher.getCourseName(), studentService.getByEmail(email).get(0).getID(), teacher.getID(),
                 LocalDateTime.now().toString(), qrToken);
 
         courseService.save(course);
-
-        System.out.println("hihi");
-        System.out.println(qrToken);
 
         return new ResponseEntity<String>("", HttpStatus.OK);
     }
@@ -92,6 +84,7 @@ public class QRController {
         String token = tokenService.getTokenFromTeacher(Integer.valueOf(id));
 
         List<Course> list = courseService.getByCourseName(teacherService.getById(Integer.valueOf(id)).getCourseName());
+        Collections.reverse(list);
         int counter = 0;
         String lastT = "";
         List<String> returnList = new ArrayList<>();
