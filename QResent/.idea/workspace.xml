@@ -5,25 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004d4942-80c1-4627-9966-541d1f433e71" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/src/components/customPopUp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styling/custom-popup.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/configCourse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/configCourse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/manageAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/manageAccount.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/qrSubmit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrSubmit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/qrcode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/qrcode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistic.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/studentProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/studentProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/teacherProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacherProfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/teachersList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teachersList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styling/qrcode.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styling/qrcode.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styling/studentProfile.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styling/studentProfile.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styling/teacher.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styling/teacher.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/controllers/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/controllers/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/controllers/QRController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/controllers/QRController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/dao/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/CourseInfoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/CourseInfoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/CourseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/repository/CourseRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/CourseInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/CourseInfoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/CourseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/CourseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/TokenService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/qr/qresent/services/TokenService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +74,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/demo" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />

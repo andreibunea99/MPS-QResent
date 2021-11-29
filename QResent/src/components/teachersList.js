@@ -17,7 +17,7 @@ const TeachersList = () => {
 
     const getTeacher = (t) => {
         axios
-            .get("http://8813-89-136-175-3.ngrok.io/listTeacher/" + t.id)
+            .get("http://localhost:8080/listTeacher/" + t.id)
             .then((response) => {
             const jsonData =JSON.stringify(response.data);
             localStorage.setItem("TEACHER", jsonData);
