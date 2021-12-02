@@ -58,7 +58,7 @@ const QrSubmit = ({ }) => {
             token,
           };
           axios
-            .post("http://8813-89-136-175-3.ngrok.io/qrSubmit/" + tokenQR, infoStudent)
+            .post("http://5090-89-136-175-3.ngrok.io/qrSubmit/" + tokenQR, infoStudent)
             .then(() => {
               history.push('/done');
             })

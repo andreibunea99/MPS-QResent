@@ -56,7 +56,7 @@ const Login = ({ setValue }) => {
     };
   
     axios
-      .post("http://localhost:8080/login", user)
+      .post("http://5090-89-136-175-3.ngrok.io/login", user)
       .then((response) => {
       const jsonData =JSON.stringify(response.data);
       localStorage.setItem("USER", jsonData);

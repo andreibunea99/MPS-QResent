@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import profile from '../media/student.png';
 import style from '../styling/studentProfile.module.scss';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
@@ -7,6 +7,8 @@ import UserDetails from './userDetails';
 import Box from '@mui/material/CardActions';
 import Token from '../media/token.png';
 import axios from "axios";
+import LoginIcon from '@mui/icons-material/Login';
+
 
 
 const StudentProfile  = () => {
@@ -16,9 +18,17 @@ const StudentProfile  = () => {
     console.log(user);
     const history = useHistory();
 
+    const [visibility, setVisibility] = useState(false);
+
+
+    const popupCloseHandler = (e) => {
+        history.push('/');
+    };
+    
+
     function getTeachersList ()  {
         axios
-            .get("http://localhost:8080/listTeacher")
+            .get("http://5090-89-136-175-3.ngrok.io/listTeacher")
             .then((response) => {
             const jsonData =JSON.stringify(response.data);
             localStorage.setItem("TEACHERS_LIST", jsonData);
@@ -48,6 +58,7 @@ const StudentProfile  = () => {
                 </div >
                 <div className={style.icon}>
                 <Link to="/manageAccount"><ManageAccountsIcon style={{fill: "black"}}/></Link>
+                <LoginIcon style={{cursor:"pointer"}} onClick={() => popupCloseHandler()}/>
                 </div>
                 {/* <div className={style.userDetails}>  <UserDetails/></div> */}
                 <p >Email Address</p>

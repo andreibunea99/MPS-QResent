@@ -12,6 +12,8 @@ import MinReq from '../media/min_req.png';
 import Bonus from '../media/bonus.png';
 import Time from '../media/time.png';
 import Qr from '../media/qr.png';
+import LoginIcon from '@mui/icons-material/Login';
+
 import Stat from '../media/stat.png';
 import CustomPopup from './customPopUp';
 
@@ -26,6 +28,8 @@ const TeacherProfile = ({ token }) => {
   const popupCloseHandler = (e) => {
     setVisibility(e);
   };
+  const popupCloseHandler2 = (e) => {
+history.push('/');  };
 
     let data = localStorage.getItem("USER");
     const userT = JSON.parse(data);
@@ -41,7 +45,7 @@ const TeacherProfile = ({ token }) => {
       user = userT;
     }
     const course = user.courseInfo;
-    console.log(course);
+   
     const time = course.timetable;
 
     const history = useHistory();
@@ -50,7 +54,7 @@ const TeacherProfile = ({ token }) => {
     
     function qrSubmit(user) {
         axios
-          .get("http://840f-188-25-105-59.ngrok.io/qrToken/" + user.ID + "/" + user.token)
+          .get("http://5090-89-136-175-3.ngrok.io/qrToken/" + user.ID + "/" + user.token)
           .then((response) => {
               console.log("sadasdsadsa");
             // const jsonData =JSON.stringify(response.data);
@@ -68,7 +72,7 @@ const TeacherProfile = ({ token }) => {
       const courseName = user.courseName;
       function getStudentsList (user)  {
         axios
-          .get("http://840f-188-25-105-59.ngrok.io/studentsList/" + user.courseName)
+          .get("http://5090-89-136-175-3.ngrok.io/studentsList/" + user.courseName)
           .then((response) => {
             const jsonData =JSON.stringify(response.data);
             localStorage.setItem("STUDENTS_LIST", jsonData);
@@ -81,7 +85,7 @@ const TeacherProfile = ({ token }) => {
 
       const getLastStat = (user) => {
         axios
-            .get("http://840f-188-25-105-59.ngrok.io/statLastToken/" + user.ID)
+            .get("http://5090-89-136-175-3.ngrok.io/statLastToken/" + user.ID)
             .then((response) => {
              const jsonData =JSON.stringify(response.data);
              console.log(jsonData);
@@ -109,27 +113,29 @@ const TeacherProfile = ({ token }) => {
         </div>
         <div className={style.icon}>
         <Link to="/configcourse"><SettingsIcon style={{fill: "black"}}/></Link>
+        <LoginIcon style={{cursor:"pointer"}} onClick={() => popupCloseHandler2()}/>
         </div>
         <p >Email Address</p>
         <a>{user.email}</a>
         <p >An universitar</p>
         <a>2021</a>
         <p>Course</p>
-        {course.description == "NOT_SETUP" && <a>{user.courseName}</a>
+        <a>{user.courseName}</a>
+        {course.description == "NOT_SETUP" 
          && <a style={{fontSize: '12px', color: 'red'}}>     NOT CONFIGURED</a>}
         {course.description != "NOT_SETUP" && <ul> <img  style={{width:'20px'}} src={Description}/>{course.description}</ul>  }
         {course.minReqHomework != "NOT_SETUP" && <ul>   <img  style={{width:'20px'}} src={MinReq}/> Requirements<ul>{course.minReqHomework}</ul>
          <ul>{course.minReqProject}</ul>  
          <ul>{course.minReqExam}</ul></ul> }
         {course.bonus != "NOT_SETUP" && <ul> <img  style={{width:'20px'}} src={Bonus}/> {course.bonus}</ul> }
-         {course.time == [] && <ul>   <img  style={{width:'20px'}} src={Time}/> Schedule  <ul>{time.map((t) => (
+        {course.time != null && <ul> <img  style={{width:'20px'}} src={Time}/> Schedule  <ul>{time.map((t) => (
            <div> {t} </div> 
         ))} </ul> </ul> }  
          
          
           {userT.userType != "2" &&  
          <img  style={{width:'20px'}} src={Qr}/>  &&
-         <button className={style.styleButton} style={{color:'black'}} onClick={() => { qrSubmit(user) }} >Generate QR</button> }
+         <p><button className={style.styleButton} style={{color:'black'}} onClick={() => { qrSubmit(user) }} >Generate QR</button></p> }
                    {userT.userType != "2" &&  
           <p><button className={style.styleButton}
             onClick={() => { getStudentsList(user) }} >Click hear to generate</button>  </p>}

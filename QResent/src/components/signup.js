@@ -15,6 +15,8 @@ import FormControl from "@mui/material/FormControl";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {useHistory } from "react-router-dom";
+import LoginIcon from '@mui/icons-material/Login';
+
 
 
 const Signup = ({ setValue }) => {
@@ -50,9 +52,16 @@ const Signup = ({ setValue }) => {
     course: ""
   };
 
+  const [visibility, setVisibility] = useState(false);
+
+
+  const popupCloseHandler = (e) => {
+    history.push('/');
+  };
+  
   const handleSubmit = async (values) => {
     const { firstName, lastName, email, password, userType, course} = values;
-    //values.password = Math.random().toString(36).slice(-8);
+    values.password = Math.random().toString(36).slice(-8);
     const user = {
       firstName,
       lastName,
@@ -61,8 +70,9 @@ const Signup = ({ setValue }) => {
       userType,
       course
     };
+   
     axios
-      .post("http://cbb3-89-136-175-3.ngrok.io/register", user)
+      .post("http://5090-89-136-175-3.ngrok.io/register", user)
       .then(() => {
         alert('User was added!');
       })
@@ -71,23 +81,24 @@ const Signup = ({ setValue }) => {
       });
   };
 
-  const getUsers = async () => {
-    await axios
-      .get("http://localhost:8080/users")
-      .then((response) => {
-        let usersArray = [];
-        for (let i = 0; i < response.data.length; i++) {
-          usersArray.push(response.data[i]);
-        }
-        setUsers(usersArray);
-      });
-  };
+  // const getUsers = async () => {
+  //   await axios
+  //     .get("http://localhost:8080/users")
+  //     .then((response) => {
+  //       let usersArray = [];
+  //       for (let i = 0; i < response.data.length; i++) {
+  //         usersArray.push(response.data[i]);
+  //       }
+  //       setUsers(usersArray);
+  //     });
+  // };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
 
-  return (
+  return ( <div>
+
     <Grid container>
       <Paper style={paperStyle}>
         <Grid align="center">
@@ -96,6 +107,7 @@ const Signup = ({ setValue }) => {
           </Avatar>
           <h2 style={headerStyle}>Add user</h2>
         </Grid>
+
 
         <Formik
           initialValues={initialValues}
@@ -149,7 +161,8 @@ const Signup = ({ setValue }) => {
                       errors.email && touched.email ? errors.email : null
                     }
                   />
-                </Grid> <Grid item>
+                </Grid>
+                 {/* <Grid item>
                   <TextField
                     name="password "
                     label="Password"
@@ -161,7 +174,7 @@ const Signup = ({ setValue }) => {
                       errors.email && touched.email ? errors.email : null
                     }
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item>
                   <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
@@ -210,7 +223,8 @@ const Signup = ({ setValue }) => {
                       errors.course && touched.course ? errors.course : null
                     }
                   />
-                                )}                </Grid>
+                                )}
+                </Grid>
                 <Grid item>
                   {/* <Link to="/done"> */}
                   <Button
@@ -224,11 +238,16 @@ const Signup = ({ setValue }) => {
                   {/* </Link> */}
                 </Grid>
               </Grid>
+
             </Form>
           )}
         </Formik>
       </Paper>
+
+      <LoginIcon style={{cursor:"pointer", position:"relative", left: "-340px" }} onClick={() => popupCloseHandler()}/>
     </Grid>
+
+    </div>
   );
 };
 

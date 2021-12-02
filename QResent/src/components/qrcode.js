@@ -26,7 +26,7 @@ const history = useHistory();
    // console.log(token);
     useEffect(() => {
       QRCode.
-      toDataURL("http://671c-2a02-2f04-c10b-e100-5c1b-a688-6604-4c11.ngrok.io/qrsubmit" + "?token=" + token).then(setSrc);
+      toDataURL("http://c4ae-2a02-2f0e-780c-900-f0b1-187b-6b-5b8d.ngrok.io/qrsubmit" + "?token=" + token).then(setSrc);
      
      }, []);
  
