@@ -236,6 +236,7 @@ public class HomeController {
         JsonObject jsonObject = new JsonObject();
 
         jsonObject.addProperty("ID", teacher.getID());
+        jsonObject.addProperty("email", teacher.getEmail());
         jsonObject.addProperty("firstName", teacher.getFirstName());
         jsonObject.addProperty("lastName", teacher.getLastName());
         jsonObject.addProperty("ldap", teacher.getLdap());
